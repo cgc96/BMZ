@@ -1,78 +1,63 @@
 package org.justking.homepage.board.db;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class BoardDTO {
-	private int bod_no;
-	private String id;
-	private String subject;
+	private Integer articleNo;
+	private String title;
 	private String content;
-	private Timestamp write_date;
-	private int read_count;
-	private int rec_count;
+	private String writer;
+	private Date regDate;
+	private int viewCnt;
+	
 	private int comt_count;
-
-	public int getBod_no() {
-		return bod_no;
+	
+	public Integer getArticleNo() {
+		return articleNo;
 	}
-
-	public void setBod_no(int bod_no) {
-		this.bod_no = bod_no;
+	public void setArticleNo(Integer articleNo) {
+		this.articleNo = articleNo;
 	}
-
-	public String getId() {
-		return id;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
 	public String getContent() {
 		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public Timestamp getWrite_date() {
-		return write_date;
+	public String getWriter() {
+		return writer;
 	}
-
-	public void setWrite_date(Timestamp write_date) {
-		this.write_date = write_date;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-
-	public int getRead_count() {
-		return read_count;
+	public Date getRegDate() {
+		return regDate;
 	}
-
-	public void setRead_count(int read_count) {
-		this.read_count = read_count;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
-
-	public int getRec_count() {
-		return rec_count;
+	public int getViewCnt() {
+		return viewCnt;
 	}
-
-	public void setRec_count(int rec_count) {
-		this.rec_count = rec_count;
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
 	}
-
 	public int getComt_count() {
 		return comt_count;
 	}
-
 	public void setComt_count(int comt_count) {
 		this.comt_count = comt_count;
 	}
+	@Override
+	public String toString() {
+		return "BoardDTO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", comt_count=" + comt_count + "]";
+	}
+	
 }

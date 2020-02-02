@@ -44,4 +44,14 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Overloaded POST(PUT, OATCH, DELETE) 사용 위해 HiddenHttpMethodFilter 제공 -->
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

@@ -21,8 +21,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="./Gu/gangseo.jsp">강서구<span class="sr-only">(current)</span></a>
-       
+        <a class="nav-link" href="./board/listPaging">강서구<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">금정구</a>

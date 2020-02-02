@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.justking.homepage.sql.reply">
+
+	<!-- resultMap 자바와 DB 사이에 다른 변수명을 일치 시켜준다.-->
+	<select id="list" resultMap="ReplyResultMap">
+		SELECT reply_no,
+			article_no,
+			reply_text,
+			reply_writer,
+			reg_date,
+			update_date
+		FROM reply
+		WHERE article_no = #{articleNo}
+		ORDER BY reply_no
+	</select>
+	
+	<!-- 페이지당 10개씩 출력-->
+	<select id="listPaging" resultMap="ReplyResultMap">
+		SELECT reply_no,
+			article_no,
+			reply_text,
+			reply_writer,
+			reg_date,
+			update_date
+		FROM reply
+		WHERE article_no = #{articleNo}
+		ORDER BY reply_no
+		LIMIT #{criteria.pageStart}, #{criteria.perPageNum}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="create">
+		INSERT INTO reply(article_no, reply_text, reply_writer)
+		values(#{articleNo}, #{replyText}, #{replyWriter})
+	</insert>
+
+	<update id="update">
+		UPDATE reply
+		SET
+			reply_text = #{replyText}
+			, update_date = NOW()
+		WHERE
+			reply_no = #{replyNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM reply
+		WHERE reply_no = #{replyNo}
+	</delete>
+	
+	<select id="countReplies" resultType="int">
+		SELECT
+			COUNT(article_no)
+		FROM reply
+		WHERE article_no = #{articleNo}
+	</select>
+	
+	<resultMap id="ReplyResultMap" type="ReplyDTO" >
+		<id property = "replyNo" column="reply_no"/>
+		<result property = "ArticleNo" column="article_no"/>
+		<result property = "replyText" column="reply_text"/>
+		<result property = "replyWriter" column="reply_writer"/>
+		<result property = "regDate" column="reg_date"/>
+		<result property = "updateDate" column="update_date"/>
+	</resultMap>
+	
+	<resultMap id="ArticleResultMap" type="BoardDTO" >
+		<id property = "articleNo" column="article_no"/>
+		<result property = "title" column="title"/>
+		<result property = "content" column="content"/>
+		<result property = "writer" column="writer"/>
+		<result property = "regDate" column="regdate"/>
+		<result property = "viewCnt" column="viewcnt"/>
+	</resultMap>
+</mapper>
