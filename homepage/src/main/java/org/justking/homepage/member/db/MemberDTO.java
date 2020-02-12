@@ -6,10 +6,9 @@ public class MemberDTO {
 	private String id;
 	private String pw;
 	private String email;
+	private String nickName;
 	private Date reg_date;
 	private Date log_date;
-	private String approval_status;
-	private String approval_key;
 
 	public String getId() {
 		return id;
@@ -51,19 +50,20 @@ public class MemberDTO {
 		this.log_date = log_date;
 	}
 
-	public String getApproval_status() {
-		return approval_status;
+
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setApproval_status(String approval_status) {
-		this.approval_status = approval_status;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
-	public String getApproval_key() {
-		return approval_key;
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", pw=" + pw + ", email=" + email + ", nickName=" + nickName + ", reg_date="
+				+ reg_date + ", log_date=" + log_date + "]";
 	}
+	
 
-	public void setApproval_key(String approval_key) {
-		this.approval_key = approval_key;
-	}
 }

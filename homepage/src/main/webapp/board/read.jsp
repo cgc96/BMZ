@@ -101,7 +101,7 @@
        		<div class="user-block">
                 <span class="username">
                     
-                    <a href="#">${board.writer}</a>
+                    <a href="#">${ member.id }</a>
                 </span>
                 <span class="description"><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value="${board.regDate}"/></span>
             </div>
@@ -117,10 +117,12 @@
 		</form>
 		
 		<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
-       	<div class="pull-right">
-        	<button type="submit" class="btn btn-warning modBtn" ><i class="fa fa-edit"></i> 수정</button>
-        	<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 삭제</button>
-        </div>
+       	<c:if test="${member.id == board.writer}">
+	       	<div class="pull-right">
+	        	<button type="submit" class="btn btn-warning modBtn" ><i class="fa fa-edit"></i> 수정</button>
+	        	<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 삭제</button>
+	        </div>
+	    </c:if>
        </div>
        	
   </div>
@@ -178,8 +180,6 @@
     {{#each.}}
     <div class="post replyDiv" data-replyNo={{replyNo}}>
         <div class="user-block">
-            <%--댓글 작성자 프로필사진 : 추후 이미지 업로드기능 구현 예정--%>
-            <img class="img-circle img-bordered-sm" src="/dist/img/default-user-image.jpg" alt="user image">
             <%--댓글 작성자--%>
             <span class="username">
                 <%--작성자 이름--%>
@@ -229,8 +229,8 @@
         });
         
         // 댓글 등록일자 출력을 위한 날짜/시간 문자열 처리
-        Handlebars.registerHelper("prettifyDate", function (timeVale) {
-            var dateObj = new Date(timeVale);
+        Handlebars.registerHelper("prettifyDate", function (timeValue) {
+            var dateObj = new Date(timeValue);
             var year = dateObj.getFullYear();
             var month = dateObj.getMonth() + 1;
             var date = dateObj.getDate();
@@ -245,24 +245,28 @@
         });
         
         //댓글 목록 함수 호출
-        getReplies("/replies/" + articleNo + "/" + replyPageNum);
+        getReplies("../replies/" + articleNo + "/" + replyPageNum);
         
         // 댓글 목록 함수
         function getReplies(repliesUri) {
             // 댓글 목록 가져오기
             $.getJSON(repliesUri, function (data) {
-                // 1. 댓글 갯수 출력 함수 호출
+
+            	// 1. 댓글 갯수 출력 함수 호출
                 printReplyCount(data.pageMaker.totalCount);
+            	
                 // 2. 댓글 목록 출력 함수 호출
                 printReplies(data.replies, $(".repliesDiv"), $("#replyTemplate"));
                 // 3. 댓글 하단 페이징 출력 함수 호출
                 printReplyPaging(data.pageMaker, $(".pagination"));
+                
+
             });
         };
         
         // 1. 댓글 갯수 출력 / 댓글 유무에 따라 댓글 보기 버튼 활성/비활성
         function printReplyCount(totalCount) {
-            
+
         	var replyCount = $(".replyCount");
         	var collapsedBox = $(".collapsed-box");
         	
@@ -309,8 +313,9 @@
         // 댓글 페이지 번호 클릭 이벤트
         $(".pagination").on("click", "li a", function (event) {
             event.preventDefault();
-            replyPagenum = $(this).attr("href");
-            getPage("/replies/all/"+articleNo+"/"+replyPageNum);
+            replyPageNum = $(this).attr("href");
+            getReplies("../replies/" + articleNo + "/" + replyPageNum);
+
         });
         // ---------------------------------------- 댓글 입력 ----------------------------------------
         // 댓글 저장 버튼 클릭 이벤트
@@ -323,8 +328,8 @@
             
             // 댓글 입력처리 수행
             $.ajax({
-                type: "post",
-                url: "/replies/",
+                type: 'POST',
+                url: "../replies",
                 headers: {
                     "Content-Type" : "application/json",
                     "X-HTTP-Method-Override" : "POST"
@@ -339,8 +344,8 @@
                     console.log("result : " + result);
                     if (result == "regSuccess") {
                         alert("댓글이 등록되었습니다.");
-                        replyPage = 1;  // 페이지 1로 초기화
-                        getReplies("/replies/" + articleNo + "/" + replyPageNum); // 댓글 목록 호출
+                        replyPageNum = 1;  // 페이지 1로 초기화
+                        getReplies("../replies/" + articleNo + "/" + replyPageNum); // 댓글 목록 호출
                         replyTextObj.val("");     // 작성자 입력창 공백처리
                         replyWriterObj.val("");   // 댓글 입력창 공백처리
                     }
@@ -362,7 +367,7 @@
             var replytext = $("#replyText").val();
             $.ajax({
                 type: "put",
-                url: "/replies/" + replyNo,
+                url: "../replies/" + replyNo,
                 headers: {
                     "Content-Type" : "application/json",
                     "X-HTTP-Method-Override" : "PUT"
@@ -386,7 +391,7 @@
             var replyNo = $(".replyNo").val();
             $.ajax({
                 type: "delete",
-                url: "/replies/" + replyNo,
+                url: "../replies/" + replyNo,
                 headers: {
                     "Content-Type" : "application/json",
                     "X-HTTP-Method-Override" : "DELETE"

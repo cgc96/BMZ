@@ -36,7 +36,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="../MainPage.jsp">부산 맛집 지도</a>
+  <a class="navbar-brand" href="/homepage/MainPage">부산 맛집 지도</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -102,7 +102,7 @@
 
 <div class="jumbotron">
   <h1 class="display-3">강서구 지도자리</h1>
-  <p class="lead">준희 화이팅 </p>
+  <p class="lead">준희 화이팅  (${ member.id }) </p>
 </div>
 
 <div class="col-lg-12">

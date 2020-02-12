@@ -1,5 +1,7 @@
 package org.justking.homepage.member.db;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,58 +13,63 @@ public class MemberDAO {
 	@Autowired
 	SqlSession sqlsession = null;
 	
-	// ì•„ì´ë”” ì¤‘ë³µ ê²€ì‚¬
-	public int check_id(String id) throws Exception{
-		return sqlsession.selectOne("member.check_id", id);
-	}
-	
-	// ì´ë©”ì¼ ì¤‘ë³µ ê²€ì‚¬
-	public int check_email(String email) throws Exception{
-		return sqlsession.selectOne("member.check_email", email);
-	}
-	
-	// íšŒì›ê°€ì…
-	@Transactional
-	public int join_member(MemberDTO member) throws Exception{
-		return sqlsession.insert("member.join_member", member);
-	}
-	
-	// ì´ë©”ì¼ ì¸ì¦
-	@Transactional
-	public int approval_member(MemberDTO member) throws Exception{
-		return sqlsession.update("member.approval_member", member);
-	}
-	
-	public MemberDTO login(String id) throws Exception{
-		return sqlsession.selectOne("member.login", id);
-	}
-	
-	// ë¡œê·¸ì¸ ì ‘ì†ì¼ì ë³€ê²½
-	@Transactional
-	public int update_log(String id) throws Exception{
-		return sqlsession.update("member.update_log", id);
-	}
-	
-	// ì•„ì´ë”” ì°¾ê¸°
-	public String find_id(String email) throws Exception{
-		return sqlsession.selectOne("member.find_id", email);
-	}
-	
-	// ë¹„ë°€ë²ˆí˜¸ ë³€ê²½
-	@Transactional
-	public int update_pw(MemberDTO member) throws Exception{
-		return sqlsession.update("member.update_pw", member);
-	}
-	
-	// ë§ˆì´í˜ì´ì§€
-	@Transactional
-	public int update_mypage(MemberDTO member) throws Exception{
-		return sqlsession.update("member.update_mypage", member);
-	}
+	private static final String NAMESPACE = "org.justking.homepage.sql.member";
 
-	// íšŒì›íƒˆí‡´
+	// È¸¿øÅ»Åğ
 	@Transactional
 	public int withdrawal(MemberDTO member) throws Exception{
-		return sqlsession.delete("member.withdrawal", member);
+		return sqlsession.delete(NAMESPACE + ".withdrawal", member);
 	}
+
+	// ¸¶ÀÌÆäÀÌÁö
+	@Transactional
+	public int update_mypage(MemberDTO member) throws Exception{
+		return sqlsession.update(NAMESPACE + ".update_mypage", member);
+	}
+	
+	// ºñ¹Ğ¹øÈ£ º¯°æ
+	@Transactional
+	public int update_pw(MemberDTO member) throws Exception{
+		return sqlsession.update(NAMESPACE + ".update_pw", member);
+	}
+		
+	// ¾ÆÀÌµğ Áßº¹ °Ë»ç
+	public int check_id(String id) throws Exception{
+		return sqlsession.selectOne(NAMESPACE + ".check_id", id);
+	}
+	
+	// ´Ğ³×ÀÓ Áßº¹ °Ë»ç
+	public int check_nickname(String nickname) {
+		return sqlsession.selectOne(NAMESPACE + ".check_nickname", nickname);
+	}
+	
+	// ÀÌ¸ŞÀÏ Áßº¹ °Ë»ç
+	public int check_email(String email) throws Exception{
+		return sqlsession.selectOne(NAMESPACE + ".check_email", email);
+	}
+	
+	// È¸¿ø°¡ÀÔ
+	@Transactional
+	public int join_member(MemberDTO member) throws Exception{
+		return sqlsession.insert(NAMESPACE + ".join_member", member);
+	}
+	
+	
+	// ·Î±×ÀÎ °Ë»ç
+	public MemberDTO login(String id) throws Exception{
+		return sqlsession.selectOne(NAMESPACE + ".login", id);
+	}
+	
+	// ·Î±×ÀÎ Á¢¼ÓÀÏÀÚ º¯°æ
+	@Transactional
+	public int update_log(String id) throws Exception{
+		return sqlsession.update(NAMESPACE + ".update_log", id);
+	}
+	
+	// ¾ÆÀÌµğ Ã£±â
+	public String find_id(String email) throws Exception{
+		return sqlsession.selectOne(NAMESPACE + ".find_id", email);
+	}
+
+
 }

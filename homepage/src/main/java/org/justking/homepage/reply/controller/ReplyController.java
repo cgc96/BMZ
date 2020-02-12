@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/reply")
+@RequestMapping("replies")
 public class ReplyController {
 	
 	private final ReplyService replyService;
@@ -76,10 +76,10 @@ public class ReplyController {
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("replies", replies);
-			map.put("pageMake", pageMaker);
+			map.put("pageMaker", pageMaker);
 			
 			entity = new ResponseEntity<>(map ,HttpStatus.OK);
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -103,7 +103,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	// 댓글 수정처리 메서드
+	// 댓글 삭제처리 메서드
 	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("replyNo") Integer replyNo){
 		ResponseEntity<String> entity = null;

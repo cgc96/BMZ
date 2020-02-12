@@ -8,12 +8,12 @@ public class ReplyDTO {
 	private String replyText;
 	private String replyWriter;
 	private Date regDate;
-	private Date upadateDate;
+	private Date updateDate;
 	
 	@Override
 	public String toString() {
 		return "ReplyDTO [replyNo=" + replyNo + ", ArticleNo=" + ArticleNo + ", replyText=" + replyText
-				+ ", replyWriter=" + replyWriter + ", regDate=" + regDate + ", upadateDate=" + upadateDate + "]";
+				+ ", replyWriter=" + replyWriter + ", regDate=" + regDate + ", upadateDate=" + updateDate + "]";
 	}
 	public Integer getReplyNo() {
 		return replyNo;
@@ -46,9 +46,9 @@ public class ReplyDTO {
 		this.regDate = regDate;
 	}
 	public Date getUpadateDate() {
-		return upadateDate;
+		return updateDate;
 	}
 	public void setUpadateDate(Date upadateDate) {
-		this.upadateDate = upadateDate;
+		this.updateDate = upadateDate;
 	}
 }

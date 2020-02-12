@@ -110,7 +110,7 @@
             	</div>
             	<div class="form-group">
                 	<label for="writer">작성자</label>
-                	<input class="form-control" name="writer" id="writer" placeholder="작성자 입력..">
+                	<input class="form-control" name="writer" id="writer" value = "${member.id}" readonly>
             	</div>
       		</div>
       			

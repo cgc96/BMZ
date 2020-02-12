@@ -81,15 +81,15 @@
   <p class="lead">준희 화이팅 (${ member.id }) </p>
 </div>
 	<div class ="container">
-		<c:if test = "${ member == null }">
+		<c:if test = "${empty member }">
 			<input type="button" value="회원가입" onclick="location.href='./member/memberJoinForm'">
 		</c:if>	
 		
-		<c:if test = "${ member == null }">
+		<c:if test = "${empty member }">
 			<input type="button" value = "로그인 " onclick = "location.href='./member/login_form'">
 		</c:if>	
 		
-		<c:if test = "${ member != null }">
+		<c:if test = "${not empty member }">
 			<a href = "./mypage.do">마이페이지(${ member.id })</a>
 			<input type="button" value = "로그아웃" onclick = "location.href='./logout'">
 		</c:if>
