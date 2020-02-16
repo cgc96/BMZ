@@ -49,7 +49,7 @@ public class BoardDAOImpl implements BoardDAO{
 //	}
 
 	@Override
-	public void updateViewCnt(int articleNo) throws Exception {
+	public void updateViewCnt(Integer articleNo) throws Exception {
 		sqlSession.update(NAMESPACE +".updateViewCnt", articleNo);
 	}
 
@@ -62,6 +62,28 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int countArticles(Criteria criteria) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".countArticles",criteria);
+	}
+
+	@Override
+	public void recommend(Integer articleNo) throws Exception {
+		sqlSession.update(NAMESPACE +".recommend", articleNo);
+		
+	}
+
+	@Override
+	public void nonrecommend(Integer articleNo) throws Exception {
+		sqlSession.update(NAMESPACE +".nonrecommend", articleNo);
+		
+	}
+
+	@Override
+	public List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".hotlistPaging", criteria);
+	}
+
+	@Override
+	public void hotcreate(BoardDTO board) throws Exception {
+		sqlSession.insert(NAMESPACE +".hotcreate", board);
 	}
 	
 	

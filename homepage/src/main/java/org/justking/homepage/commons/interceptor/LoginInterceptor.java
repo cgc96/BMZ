@@ -21,11 +21,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		ModelMap modelMap = modelAndView.getModelMap();
 		logger.info("hi5");
 		Object memberDTO = modelMap.get("member");
-
+		System.out.print(memberDTO);
+		
 		if(memberDTO != null) {
 			logger.info("new login success");
 			httpSession.setAttribute(LOGIN, memberDTO);
-			response.sendRedirect("/");
+			response.sendRedirect("/homepage/");
 		}
 	}
 	

@@ -29,6 +29,24 @@ public class BoardController {
 		this.boardService = boardService;
 	}
 	
+
+	// 게시물 비추천 관련 메소드
+	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.nonrecommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","nonliSuccess");
+
+		return "redirect:/board/listPaging";
+	}
+	// 게시물 추천 관련 메소드
+	@RequestMapping(value = "/recommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.recommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","liSuccess");
+		boardService.hotcreate(board);
+		
+		return "redirect:/board/listPaging";
+	}
 	//등록 페이지 이동
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String writeGET() {
@@ -67,7 +85,7 @@ public class BoardController {
 //		return "/board/list_criteria";
 //	}	
 	
-	//페이지 번호 출력
+	//페이지 번호 출력, 핫목록페이지
 	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception{
 		
@@ -81,6 +99,22 @@ public class BoardController {
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "/board/list_paging";
+	}	
+	
+	//페이지 번호 출력, 핫목록페이지
+	@RequestMapping(value = "/hot_listPaging", method = RequestMethod.GET)
+	public String hot_listPaging(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("hotlistPaging...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("hotboards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/board/hot_list";
 	}	
 	
 //	//조회 페이지 이동

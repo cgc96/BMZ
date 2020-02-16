@@ -7,12 +7,12 @@
 
 	<!-- 게시판 글 작성 -->
 	<insert id="create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt})
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, ${dislikes})
 	</insert>
 	
 	<select id="read" resultMap="ArticleResultMap">
-		SELECT article_no, title, content, writer, regdate, viewcnt
+		SELECT article_no, title, content, writer, regdate, viewcnt, likes, dislikes
 		FROM article
 		WHERE article_no = #{articleNo}
 	</select>
@@ -38,7 +38,9 @@
 			content, 
 			writer, 
 			regdate,
-			viewcnt
+			viewcnt,
+			likes,
+			dislikes
 		FROM article
 		WHERE article_no > 0
 		ORDER BY article_no DESC, regdate DESC
@@ -53,7 +55,9 @@
 			content, 
 			writer, 
 			regdate,
-			viewcnt
+			viewcnt,
+			likes,
+			dislikes
 		FROM article
 		WHERE article_no > 0
 		ORDER BY article_no DESC, regdate DESC
@@ -77,6 +81,39 @@
 		WHERE article_no = #{articleNo}
 	</update>
 	
+	<update id="recommend">
+		UPDATE article
+		SET likes = likes + 1
+		WHERE article_no = #{articleNo}
+	</update>
+	
+	<update id="nonrecommend">
+		UPDATE article
+		SET dislikes = dislikes + 1
+		WHERE article_no = #{articleNo}
+	</update>
+	
+	<!-- hot게시글 추가 -->
+	<insert id="hotcreate">
+		<![CDATA[
+			insert into hot_article 
+			select * 
+			from article 
+			where likes >= 3 and
+			  article_no = #{articleNo}
+		]]>
+	</insert>		  
+			  
+	<!-- hot게시글 삭제 -->
+	<delete id="hotdelete">
+		<![CDATA[
+			DELETE FROM hot_article
+			WHERE likes < 3 and
+			  article_no = #{articleNo} and
+			  not exists (select * from hot_article where hot_article_no = #{articleNo})
+		]]>
+	</delete>
+	
 	<resultMap id="ArticleResultMap" type="BoardDTO" >
 		<id property = "articleNo" column="article_no"/>
 		<result property = "title" column="title"/>
@@ -84,5 +121,8 @@
 		<result property = "writer" column="writer"/>
 		<result property = "regDate" column="regdate"/>
 		<result property = "viewCnt" column="viewcnt"/>
+		<result property = "likes" column="likes"/>
 	</resultMap>
+	
+
 </mapper>

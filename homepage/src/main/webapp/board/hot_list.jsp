@@ -13,30 +13,14 @@
 
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script>
-	$(function(){
-		$("#writeBtn").click(function(){
-			location.href='../board/write.do';
-		})
-	})
-</script>
-<script>
-	var result ="$msg";
-	if(result == "regSuccess") {
-		alert("게시글 등록이 완료되었습니다.");
-	} else if(result == "modSuccess"){
-		alert("게시글 수정이 완료되었습니다.");
-	} else if(result == "delSuccess"){
-		alert("게시글 삭제가 완료되었습니다.");
-	}
-</script>
+
 </head>
 
 <body>
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="../MainPage.jsp">부산 맛집 지도</a>
+  <a class="navbar-brand" href="/homepage/MainPage">부산 맛집 지도</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,7 +28,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="../board/list">강서구<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../board/listPaging">강서구<span class="sr-only">(current)</span></a>
       
       </li>
       <li class="nav-item">
@@ -102,7 +86,7 @@
 
 <div class="jumbotron">
   <h1 class="display-3">강서구 지도자리</h1>
-  <p class="lead">준희 화이팅 </p>
+  <p class="lead">준희 화이팅  (,${ login.id }, ${ member.id }) </p>
 </div>
 
 <div class="col-lg-12">
@@ -120,29 +104,50 @@
                 	 <th style="width: 150px">작성자</th>
                  	 <th style="width: 200px">작성시간</th>
                  	 <th style="width: 60px">조회</th>
+                 	 <th style="width: 60px">추천</th>
+                 	 <th style="width: 80px">비추천</th>
+                 	                  	 
                    </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="${boards}" var="board">
+                  <c:forEach items="${hotboards}" var="hotboard">
                   <tr>
-                     <td><a href="../board/read?articleNo=${board.articleNo}">${board.articleNo}</a></td>
-                     <td><a href="../board/read?articleNo=${board.articleNo}">${board.title}</a></td>
-                     <td>${board.writer} </td>
-                     <td><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value ="${board.regDate}"/></td>
-                     <td>${board.viewCnt}</td>
+                     <td>${hotboard.hot_articleNo}</td>
+                     <%--<td><a href="../board/read?articleNo=${board.articleNo}">${board.title}</a></td> --%>
+                     <td>
+                     	<a href="./read${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${hotboard.hot_articleNo}">${hotboard.hot_title}</a>
+                     <td>${hotboard.hot_writer} </td>
+                     <td><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value ="${hotboard.hot_regDate}"/></td>
+                     <td><span class="badge bg-aqua">${hotboard.hot_viewCnt}</span></td>
+                     <td><span class="badge bg-aqua">${hotboard.hot_likes}</span></td>
+                     <td><span class="badge bg-aqua">${hotboard.hot_dislikes}</span></td>
+                     
                   </tr>
                   </c:forEach>
                   </tbody>
              </table>
        </div>
-    <div class="box-footer">
-       <div class="pull-right">
-           <button type="button" class="btn btn-success btn-flat" id="writeBtn">
-               <i class="fa fa-edit"></i> 글쓰기
-           </button>
+       <div class ="box-footer">
+       	<div class ="text-center">
+       		<ul class="pagination">
+       			<c:if test="${pageMaker.prev}" >
+       				<%--<li><a href="./listPaging?page=${pageMaker.startPage - 1}">이전</a></li> --%>
+					<li><a href="./listPaging${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="idx">
+					<li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ' ' }"/>>
+						<%-- <a href="./listPaging?page=${idx}">${idx}</a>--%>
+						<a href="./listPaging${pageMaker.makeQuery(idx)}">${idx}</a>
+					</li>					
+				</c:forEach>
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<%--<li><a href="./listPaging?page=${pageMaker.endPage + 1}">다음</a></li> --%>
+					<li><a href="./listPaging${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+				</c:if>
+       		</ul>
+       	</div>
        </div>
-    
-  	</div>
+
   </div>
 </div>
 

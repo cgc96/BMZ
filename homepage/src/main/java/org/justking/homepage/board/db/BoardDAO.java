@@ -19,11 +19,21 @@ public interface BoardDAO {
 //	List<BoardDTO> listAll() throws Exception;
 //	
 	//게시글 조회 up
-	void updateViewCnt(int articleNo) throws Exception;
+	void updateViewCnt(Integer articleNo) throws Exception;
 	
 	//페이징 처리
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
 	
+	//페이징 처리
+	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
+		
 	// 전체 게시글 개수
 	int countArticles(Criteria criteria) throws Exception;
+	
+	// 게시글 좋아요 
+	void recommend(Integer articleNo) throws Exception;
+	
+	void nonrecommend(Integer articleNo) throws Exception;
+	
+	void hotcreate(BoardDTO board) throws Exception;
 }
