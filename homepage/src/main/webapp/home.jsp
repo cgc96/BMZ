@@ -78,7 +78,7 @@
 
 <div class="jumbotron">
   <h1 class="display-2">지도자리</h1>
-  <p class="lead">준희 화이팅 (${ member.id }) </p>
+  <p class="lead">준희 화이팅 ((${ member.id }), (${ login.id })) </p>
 </div>
 	<div class ="container">
 		<c:if test = "${empty member }">

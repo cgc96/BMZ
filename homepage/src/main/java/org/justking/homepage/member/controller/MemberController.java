@@ -45,7 +45,7 @@ public class MemberController {
 	// mypage 수정
 	@RequestMapping(value = "/update_mypage.do", method = RequestMethod.POST)
 	public String update_mypage(@ModelAttribute("MemberDTO") MemberDTO member, Model model, HttpSession session, RedirectAttributes rttr) throws Exception{
-		session.setAttribute("login", service.update_mypage(member));
+		session.setAttribute("member", service.update_mypage(member));
 		rttr.addFlashAttribute("msg", "회원정보 수정 완료");
 		return "redirect:/member/mypage.do";
 	}
@@ -53,7 +53,7 @@ public class MemberController {
 	// 비밀번호 변경
 	@RequestMapping(value = "/update_pw.do", method = RequestMethod.POST)
 	public String update_pw(@ModelAttribute("MemberDTO") MemberDTO member,Model model, @RequestParam("old_pw") String old_pw, HttpSession session, HttpServletResponse response, RedirectAttributes rttr) throws Exception{
-		model.addAttribute("member", service.update_pw(member, old_pw, response));
+		session.setAttribute("member", service.update_pw(member, old_pw, response));
 		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
 		return "redirect:/member/mypage.do";
 	}
@@ -130,14 +130,14 @@ public class MemberController {
 	
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
-		Object user =service.login(member, response);
-		logger.info("hi1");
+	public String login(@ModelAttribute MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
+		member =service.login(member, response);
 		
 		logger.info("h2");
-		model.addAttribute("member", user);
+		session.setAttribute("member", member);
 		logger.info("hi3");
-		return "home";
+		System.out.print(session.getAttribute("member"));
+		return "/home";
 	}
 	
 	
@@ -146,11 +146,8 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception{
 		//session.invalidate();
-		Object object = session.getAttribute("login");
-		if(object!=null) {
-			session.removeAttribute("login");
-			session.invalidate();
-		}
+		session.invalidate();
+		service.logout(response);
 		return "/member/logout";
 	}
 }
