@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <script>
 	$(function(){
 		$("#find_id_btn").click(function(){
@@ -49,15 +46,6 @@
 						<button type="button" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round" onclick="history.go(-1)">Cancel</button>
 					</p>
 				</form>
-				<div class="social-auth-links text-center">
-            		<p>- 또는 -</p>
-		            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-		                <i class="fa fa-facebook"></i> 페이스북으로 로그인
-		            </a>
-		            <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-		                <i class="fa fa-google-plus"></i> 구글 계정으로 로그인
-		            </a>
-		        </div>
 			</div>
 		</div>
 	</div>

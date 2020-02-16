@@ -25,7 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(memberDTO != null) {
 			logger.info("new login success");
 			httpSession.setAttribute(LOGIN, memberDTO);
-			response.sendRedirect("/");
+			response.sendRedirect("../../home");
 		}
 	}
 	
@@ -33,7 +33,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
 		HttpSession httpSession = request.getSession();
-		//±âÁ¸ÀÇ ·Î±×ÀÎ Á¤º¸ Á¦°Å
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if(httpSession.getAttribute(LOGIN) != null) {
 			logger.info("clear login data before");
 			httpSession.removeAttribute(LOGIN);
