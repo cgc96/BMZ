@@ -6,19 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
 	$(function(){
 		$("#find_id_btn").click(function(){
-			location.href = '../member/find_id_form.do';
+			location.href='../member/find_id_form.do';
 		});
+	})
+	$(function(){
 		$("#find_pw_btn").click(function(){
-			location.href = '../member/find_pw_form.do';
+			location.href='../member/find_pw_form.do';
 		});
 	})
 </script>
-
 <title>Login Form</title>
 </head>
 <body>
@@ -28,7 +29,7 @@
 				<h3>Log In</h3>
 			</div>
 			<div>
-				<form action="../member/login.do" method="post">
+				<form action="./login" method="post">
 					<p>
 						<label>ID</label>
 						<span class="w3-right w3-button w3-hover-white" title="아이디 찾기" id="find_id_btn">
@@ -48,6 +49,15 @@
 						<button type="button" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round" onclick="history.go(-1)">Cancel</button>
 					</p>
 				</form>
+				<div class="social-auth-links text-center">
+            		<p>- 또는 -</p>
+		            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+		                <i class="fa fa-facebook"></i> 페이스북으로 로그인
+		            </a>
+		            <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+		                <i class="fa fa-google-plus"></i> 구글 계정으로 로그인
+		            </a>
+		        </div>
 			</div>
 		</div>
 	</div>

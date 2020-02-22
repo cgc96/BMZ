@@ -5,8 +5,8 @@
 
 <configuration>
 	<typeAliases>
-	
-	<typeAlias alias="member" type="org.justking.homepage.member.db.MemberDTO"/>
-	<typeAlias alias="board"  type="org.justking.homepage.board.db.BoardDTO"/>
+		<typeAlias alias="ReplyDTO" type="org.justking.homepage.reply.db.ReplyDTO"/>
+		<typeAlias alias="member" type="org.justking.homepage.member.db.MemberDTO"/>
+		<typeAlias alias="BoardDTO"  type="org.justking.homepage.board.db.BoardDTO"/>
 	</typeAliases>
 </configuration>

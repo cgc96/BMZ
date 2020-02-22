@@ -11,7 +11,7 @@
 	$(function(){
 		$("#loginBtn").click(function(){
 			location.href='../member/login_form.do';
-		})
+		});
 	})
 </script>
 <title>아이디 찾기</title>

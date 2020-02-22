@@ -23,6 +23,13 @@
 	
 	<context:component-scan base-package="org.justking.homepage" />
 	
+	<beans:bean id="LoginInterceptor" class="org.justking.homepage.commons.interceptor.LoginInterceptor"/>												
+	<interceptors>
+		<interceptor>
+			<mapping path ="login"/>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

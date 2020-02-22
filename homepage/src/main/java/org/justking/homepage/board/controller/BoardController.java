@@ -3,36 +3,178 @@ package org.justking.homepage.board.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.justking.homepage.board.db.BoardDTO;
-import org.justking.homepage.board.service.BoardServiceImpl;
+import org.justking.homepage.board.service.BoardService;
+import org.justking.homepage.commons.paging.Criteria;
+import org.justking.homepage.commons.paging.PageMaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	
+	private final BoardService boardService;
+	
 	@Inject
-	private BoardServiceImpl service;
-	
-	// Í≤åÏãúÌåê Î™©Î°ù ÌéòÏù¥ÏßÄ Ïù¥Îèô(ÌéòÏù¥Ïßï Í¥ÄÎ†® ÎÇ¥Ïö©ÏùÄ Ï∂îÌõÑ Íµ¨ÌòÑ)
-	@RequestMapping(value="/board_list.do")
-	public String board_list() throws Exception{
-		return "/board/board_list";
+	public BoardController(BoardService boardService) {
+		this.boardService = boardService;
 	}
 	
-	// Í≤åÏãúÌåê Í∏Ä ÏûëÏÑ± Ìèº Ïù¥Îèô
-	@RequestMapping(value="/board_write_form.do")
-	public String board_write_form() throws Exception{
-		return "/board/board_write_form";
+
+	// ∞‘Ω√π∞ ∫Ò√ﬂ√µ ∞¸∑√ ∏ﬁº“µÂ
+	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.nonrecommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","nonliSuccess");
+
+		return "redirect:/board/listPaging";
+	}
+	// ∞‘Ω√π∞ √ﬂ√µ ∞¸∑√ ∏ﬁº“µÂ
+	@RequestMapping(value = "/recommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.recommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","liSuccess");
+		boardService.hotcreate(board);
+		
+		return "redirect:/board/listPaging";
+	}
+	//µÓ∑œ ∆‰¿Ã¡ˆ ¿Ãµø
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String writeGET() {
+		logger.info("wrtie GET...");
+		return "/board/write";
 	}
 	
-	// Í≤åÏãúÌåê Í∏Ä ÏûëÏÑ±
-	@RequestMapping(value="/board_write.do", method = RequestMethod.POST)
-	public String board_write(@ModelAttribute BoardDTO board) throws Exception{
-		service.board_write(board);
-		return "redirect:/board/board_list.do";
+	//µÓ∑œ √≥∏Æ
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String writePOST(BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
+		
+		logger.info("write POST...");
+		logger.info(board.toString());
+		boardService.create(board);
+		redirectAttributes.addFlashAttribute("msg","regSuccess");
+		
+		return "redirect:/board/listPaging";
 	}
+	
+//	//∏Ò∑œ ∆‰¿Ã¡ˆ ¿Ãµø
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+//	public String list(Model model) throws Exception{
+//		
+//		logger.info("list...");
+//		model.addAttribute("boards",boardService.listAll());
+//		
+//		return "/board/list";
+//	}
+	
+//	//∆‰¿Ã¬° √≥∏Æ
+//	@RequestMapping(value = "/listCriteria", method = RequestMethod.GET)
+//	public String listCriteria(Model model, Criteria criteria) throws Exception{
+//		
+//		logger.info("listCriteria...");
+//		model.addAttribute("boards",boardService.listCriteria(criteria));
+//		return "/board/list_criteria";
+//	}	
+	
+	//∆‰¿Ã¡ˆ π¯»£ √‚∑¬, «÷∏Ò∑œ∆‰¿Ã¡ˆ
+	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
+	public String listPaging(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("listPaging...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("boards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/board/list_paging";
+	}	
+	
+	//∆‰¿Ã¡ˆ π¯»£ √‚∑¬, «÷∏Ò∑œ∆‰¿Ã¡ˆ
+	@RequestMapping(value = "/hot_listPaging", method = RequestMethod.GET)
+	public String hot_listPaging(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("hotlistPaging...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("hotboards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/board/hot_list";
+	}	
+	
+//	//¡∂»∏ ∆‰¿Ã¡ˆ ¿Ãµø
+//	@RequestMapping(value = "/read", method = RequestMethod.GET)
+//	public String read(@RequestParam("articleNo") int articleNo, 
+//			Model model) throws Exception{
+//		
+//		logger.info("read...");
+//		model.addAttribute("board", boardService.read(articleNo));
+//		
+//		return "/board/read";
+//	}
+
+	//¡∂»∏ ∆‰¿Ã¡ˆ ¿Ãµø
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public String read(@RequestParam("articleNo") int articleNo, 
+			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
+		
+		logger.info("read...");
+		model.addAttribute("board", boardService.read(articleNo));
+		
+		return "/board/read";
+	}
+
+	//ºˆ¡§ ∆‰¿Ã¡ˆ ¿Ãµø
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modifyGET(@RequestParam("articleNo") int articleNo,
+			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
+		
+		logger.info("modifyGet...");
+		model.addAttribute("board",boardService.read(articleNo));
+		
+		return "/board/modify";
+	}
+	
+	//ºˆ¡§ √≥∏Æ
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPOST(BoardDTO board, Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
+		
+		logger.info("modifyPOST...");
+		boardService.update(board);
+		redirectAttributes.addAttribute("page",criteria.getPage());
+		redirectAttributes.addAttribute("perPageNum",criteria.getPerPageNum());
+		redirectAttributes.addFlashAttribute("msg", "modSucccess");
+		
+		return "redirect:/board/listPaging";
+	}
+	
+	//ªË¡¶ √≥∏Æ
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("articleNo") int articleNo, 
+			Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
+		
+		logger.info("remove...");
+		boardService.delete(articleNo);
+		redirectAttributes.addAttribute("page",criteria.getPage());
+		redirectAttributes.addAttribute("perPageNum",criteria.getPerPageNum());
+		redirectAttributes.addFlashAttribute("msg", "delSucccess");
+		return "redirect:/board/listPaging";
+	}
+	
+	
 }

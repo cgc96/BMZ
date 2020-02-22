@@ -3,11 +3,126 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="board">
+<mapper namespace="org.justking.homepage.sql.board">
 
 	<!-- 게시판 글 작성 -->
-	<insert id="board_write" parameterType="board">
-		insert into board(id, subject, content) values(#{id}, #{subject}, #{content})
+	<insert id="create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, ${dislikes})
 	</insert>
 	
+	<select id="read" resultMap="ArticleResultMap">
+		SELECT article_no, title, content, writer, regdate, viewcnt, likes, dislikes
+		FROM article
+		WHERE article_no = #{articleNo}
+	</select>
+	
+	<update id="update">
+		UPDATE article
+		SET
+			title = #{title}, content = #{content}
+		WHERE
+			article_no = #{articleNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM article
+		WHERE article_no = #{articleNo}
+	</delete>
+	
+	<!-- resultMap 자바와 DB 사이에 다른 변수명을 일치 시켜준다.-->
+	<select id="listAll" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0
+		ORDER BY article_no DESC, regdate DESC
+		]]>
+	</select>
+	
+	<!-- 페이지당 10개씩 출력-->
+	<select id="listPaging" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<!-- 게시물 개수-->
+	<select id="countArticles" resultType="int">
+		<![CDATA[
+		SELECT COUNT(article_no)
+		FROM article
+		WHERE article_no > 0
+		]]>
+	</select>
+	
+	
+	<update id="updateViewCnt">
+		UPDATE article
+		SET viewcnt = viewcnt + 1
+		WHERE article_no = #{articleNo}
+	</update>
+	
+	<update id="recommend">
+		UPDATE article
+		SET likes = likes + 1
+		WHERE article_no = #{articleNo}
+	</update>
+	
+	<update id="nonrecommend">
+		UPDATE article
+		SET dislikes = dislikes + 1
+		WHERE article_no = #{articleNo}
+	</update>
+	
+	<!-- hot게시글 추가 -->
+	<insert id="hotcreate">
+		<![CDATA[
+			insert into hot_article 
+			select * 
+			from article 
+			where likes >= 3 and
+			  article_no = #{articleNo}
+		]]>
+	</insert>		  
+			  
+	<!-- hot게시글 삭제 -->
+	<delete id="hotdelete">
+		<![CDATA[
+			DELETE FROM hot_article
+			WHERE likes < 3 and
+			  article_no = #{articleNo} and
+			  not exists (select * from hot_article where hot_article_no = #{articleNo})
+		]]>
+	</delete>
+	
+	<resultMap id="ArticleResultMap" type="BoardDTO" >
+		<id property = "articleNo" column="article_no"/>
+		<result property = "title" column="title"/>
+		<result property = "content" column="content"/>
+		<result property = "writer" column="writer"/>
+		<result property = "regDate" column="regdate"/>
+		<result property = "viewCnt" column="viewcnt"/>
+		<result property = "likes" column="likes"/>
+	</resultMap>
+	
+
 </mapper>

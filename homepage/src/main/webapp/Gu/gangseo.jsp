@@ -85,54 +85,7 @@
  <div class="container">
       <div class="row">
         	
-<table class="table table-hover" style="max-width: 70rem;">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">제목</th>
-      <th scope="col">닉네임</th>
-      <th scope="col">등록일</th>
-      <th scope="col">추천</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">5</th>
-      <td>이런느낌</td>
-      <td>킹</td>
-      <td>20202020</td>
-      <td>200</td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>이런느낌</td>
-      <td>킹</td>
-      <td>20202020</td>
-      <td>200</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>이런느낌</td>
-      <td>킹</td>
-      <td>20202020</td>
-      <td>200</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>이런느낌</td>
-      <td>킹</td>
-      <td>20202020</td>
-      <td>200</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>이런느낌</td>
-      <td>킹</td>
-      <td>20202020</td>
-      <td>200</td>
-    </tr>
-  </tbody>
-</table> 
+
       </div>
 </div>
 

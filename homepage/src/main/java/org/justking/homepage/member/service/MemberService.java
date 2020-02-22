@@ -4,15 +4,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.justking.homepage.member.db.MemberDTO;
 
 public interface MemberService {
+	
+	public void check_nickname(String nickname, HttpServletResponse response) throws Exception;
+
 	public void check_id(String id, HttpServletResponse response) throws Exception;
 
 	public void check_email(String email, HttpServletResponse response) throws Exception;
 
 	public int join_member(MemberDTO member, HttpServletResponse response) throws Exception;
-
-	public String create_key() throws Exception;
-
-	void approval_member(MemberDTO member, HttpServletResponse response) throws Exception;
 
 	MemberDTO login(MemberDTO member, HttpServletResponse response) throws Exception;
 

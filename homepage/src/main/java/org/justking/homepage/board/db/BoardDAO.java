@@ -1,19 +1,39 @@
 package org.justking.homepage.board.db;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
-@Repository
-public class BoardDAO {
+import org.justking.homepage.commons.paging.Criteria;
+
+public interface BoardDAO {
 	
-	@Autowired
-	SqlSession sqlsession = null;
+	//∞‘Ω√±€ ¿€º∫
+	void create(BoardDTO board) throws Exception;
 	
-	// Í≤åÏãúÌåê Í∏Ä ÏûëÏÑ±
-	@Transactional
-	public int board_write(BoardDTO board) throws Exception{
-		return sqlsession.insert("board.board_write", board);
-	}
+	BoardDTO read(Integer articleNo) throws Exception;
+	
+	void update(BoardDTO board) throws Exception;
+	
+	void delete(Integer articleNo) throws Exception;
+	
+//	//∞‘Ω√π∞ ∏Ò∑œ ¡∂»∏
+//	List<BoardDTO> listAll() throws Exception;
+//	
+	//∞‘Ω√±€ ¡∂»∏ up
+	void updateViewCnt(Integer articleNo) throws Exception;
+	
+	//∆‰¿Ã¬° √≥∏Æ
+	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
+	
+	//∆‰¿Ã¬° √≥∏Æ
+	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
+		
+	// ¿¸√º ∞‘Ω√±€ ∞≥ºˆ
+	int countArticles(Criteria criteria) throws Exception;
+	
+	// ∞‘Ω√±€ ¡¡æ∆ø‰ 
+	void recommend(Integer articleNo) throws Exception;
+	
+	void nonrecommend(Integer articleNo) throws Exception;
+	
+	void hotcreate(BoardDTO board) throws Exception;
 }

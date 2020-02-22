@@ -10,7 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function(){
-		if($ {msg ne null}){
+		if(${msg ne null}){
 			alert('${msg}');
 		};
 		
@@ -31,10 +31,11 @@
 		}));
 		
 		if($("#wdForm").submit(function(){
-			if(!confirm("정말 탈퇴하겠습니까?")){
+			if(!confirm("정말 탈퇴할까요?")){
 				return false;
 			}
 		}));
+	})
 </script>
 <title>마이페이지</title>
 </head>
@@ -78,16 +79,19 @@
 					</p>
 				</form>
 				<br />
-				<form id="wdForm" action="../member/withdrawal.do" method="post">	
+				<form id="wdForm" action="../member/withrawal.do" method="post">	
 					<input type="hidden" name="id" value="${ member.id }">
 					<p>
 						<label>Password</label>
-						<input class="w3-input" type="password" name="pw" required>
+						<input class="w3-input" id="password" name="pw" required>
 					</p>
 					<p class="w3-center">
 						<button type="submit" id="withdrawalBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">회원탈퇴</button>
 					</p>
 				</form>
+				<button type="button" onclick="history.go(-1)" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">뒤로가기</button>
+
+			
 			</div>
 		</div>
 	</div>

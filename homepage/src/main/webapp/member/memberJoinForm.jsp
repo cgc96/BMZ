@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,15 +16,15 @@
 				$("#pw").val("").focus();
 				$("#pw2").val("");
 				return false;
-			}else if ($("#pw").val().length < 2) {
-				alert("비밀번호는 2자 이상으로 설정해야 합니다.");
+			}else if ($("#pw").val().length < 8) {
+				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
 				$("#pw").val("").focus();
 				return false;
 			}else if($.trim($("#pw").val()) !== $("#pw").val() || $.trim($("#email").val()) !== $("#email").val() || $.trim($("#id").val()) !== $("#id").val()){
 				alert("공백은 입력이 불가능합니다.");
 				return false;
 			}
-		})
+		});
 		
 		$("#id").keyup(function() {
 			$.ajax({
@@ -40,6 +39,25 @@
 						$("#joinBtn").attr("disabled", "disabled");
 					} else {
 						$("#id_check").html("");
+						$("#joinBtn").removeAttr("disabled");
+					}
+				},
+			})
+		});
+		
+		$("#nickname").keyup(function() {
+			$.ajax({
+				url : "../member/check_nickname.do",
+				type : "POST",
+				data : {
+					nickname : $("#nickName").val()
+				},
+				success : function(result) {
+					if (result == 1) {
+						$("#nickname_check").html("중복된 아이디가 있습니다.");
+						$("#joinBtn").attr("disabled", "disabled");
+					} else {
+						$("#nickname_check").html("");
 						$("#joinBtn").removeAttr("disabled");
 					}
 				},
@@ -71,15 +89,21 @@
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
-				<h3>Member Join Form</h3>
+				<h3><b>회원가입</b></h3>
 			</div>
 			<div>
-				<form id="joinForm" action="./member/join_member.do" method="post">
+				<form id="joinForm" action="./join_member" method="post">
 					<p>
 						<label>ID</label> 
 						<input class="w3-input" type="text" id="id" name="id" required> 
 						<span id="id_check" class="w3-text-red"></span>
 					</p>
+					<p>
+						<label>nickName</label> 
+						<input class="w3-input" type="text" id="nickName" name="nickName" required> 
+						<span id="nickname_check" class="w3-text-red"></span>
+					</p>
+					
 					<p>
 						<label>Password</label> 
 						<input class="w3-input" id="pw" name="pw" type="password" required>
@@ -90,7 +114,7 @@
 					</p>
 					<p>
 						<label>Email</label>
-						<input type="text" id="email" name="email" class="w3-input" required placeholder="이메일 인증 후 로그인이 가능합니다.">
+						<input type="email" id="email" name="email" class="w3-input" required placeholder="이메일...">
 						<span id="email_check" class="w3-text-red"></span>
 					</p>
 					<p class="w3-center">
@@ -98,6 +122,15 @@
 						<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
 					</p>
 				</form>
+				<div class="social-auth-links text-center">
+            		<p>- 또는 -</p>
+          		  <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+          		      <i class="fa fa-facebook"></i> 페이스북으로 가입
+        		    </a>
+       		     <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+       		         <i class="fa fa-google-plus"></i> 구글 계정으로 가입
+      		      </a>
+        </div>
 			</div>
 		</div>
 	</div>
