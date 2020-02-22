@@ -21,7 +21,6 @@
 <body>
 
 
-
 <div class="jumbotron">
   <h1 class="display-3">강서구 지도자리</h1>
   <p class="lead">준희 화이팅 </p>

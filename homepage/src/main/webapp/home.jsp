@@ -2,21 +2,25 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
+
+<%@ page import="java.sql.*" %>\
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
+
 <%@ include file = "./header.jsp" %>
 </head>
 
 <body>
+
+
 <div class="jumbotron">
   <h1 class="display-2">지도자리</h1>
   <p class="lead">준희 화이팅 ((${ member.id }), (${ login.id })) </p>
 </div>
-	
+  
  <div class="container">
       <div class="row">
         <div class="col-4">
@@ -51,7 +55,7 @@
 		    }
             %>
             </tbody>        
-            </table>
+              </table>
             </div>
           </div>
         </div>
