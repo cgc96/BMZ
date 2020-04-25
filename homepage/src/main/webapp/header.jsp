@@ -13,7 +13,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/homepage/MainPage">부산 맛집 지도</a>
+  <a class="navbar-brand" href="/homepage/home.jsp">부산 맛집 지도</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -71,12 +71,12 @@
     </ul>
 
 		<c:if test = "${empty member }">
-			<input type="button" class="btn btn-danger" value = "로그인 " onclick = "location.href='./member/login_form'">
+			<input type="button" class="btn btn-danger" value = "로그인 " onclick = "location.href='./member/login_form.do'">
 		</c:if>	
 		
 		<c:if test = "${not empty member }">
-			<a href = "./mypage.do">마이페이지(${ member.id })</a>
-			<input type="button" class="btn btn-danger" value = "로그아웃" onclick = "location.href='./logout'">
+			<a href = "./member/mypage.do">마이페이지(${ member.id })</a>
+			<input type="button" class="btn btn-danger" value = "로그아웃" onclick = "location.href='./member/logout'">
 		</c:if>
 		
 

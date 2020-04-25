@@ -8,7 +8,9 @@
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
-<%@ include file = "./header.jsp" %>
+
+<jsp:include page="./header.jsp"/>
+
 </head>
 
 <body>
