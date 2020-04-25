@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
 
 <%@ include file = "./header.jsp" %>
+  
 </head>
 
 <body>

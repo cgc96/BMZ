@@ -123,21 +123,17 @@ public class MemberController {
 
 	
 	// 로그인 폼 이동
-	@RequestMapping(value = "/login_form", method = RequestMethod.GET)
+	@RequestMapping(value = "/login_form.do", method = RequestMethod.GET)
 	public String login_form(@ModelAttribute("MemberDTO") MemberDTO member) throws Exception{
 		return "/member/loginForm";
 	}
 	
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
 		member =service.login(member, response);
-		
-		logger.info("h2");
 		session.setAttribute("member", member);
-		logger.info("hi3");
-		System.out.print(session.getAttribute("member"));
-		return "/home";
+		return "home";
 	}
 	
 	
