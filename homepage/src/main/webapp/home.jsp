@@ -35,7 +35,7 @@
 			<% 
     		try {
        			Class.forName("com.mysql.jdbc.Driver");
-       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "ehddnr741");
        			Statement stmt = conn.createStatement();
        			String sql = "SELECT article_no, title, viewcnt FROM article";
        		 	ResultSet rs = stmt.executeQuery(sql);
