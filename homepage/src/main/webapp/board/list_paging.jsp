@@ -30,7 +30,6 @@
 		alert("게시글 삭제가 완료되었습니다.");
 	}
 </script>
-
 <%@ include file = "../header.jsp" %>
 </head>
 
