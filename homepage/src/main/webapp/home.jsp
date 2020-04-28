@@ -3,19 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.sql.*" %>\
+<%@ page import="java.sql.*" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
 
-<%@ include file = "./header.jsp" %>
-  
+ <jsp:include page = "./header.jsp" /> 
+
 </head>
 
 <body>
-
 
 <div class="jumbotron">
   <h1 class="display-2">지도자리</h1>
@@ -35,7 +37,7 @@
 			<% 
     		try {
        			Class.forName("com.mysql.jdbc.Driver");
-       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "ehddnr741");
+       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
        			Statement stmt = conn.createStatement();
        			String sql = "SELECT article_no, title, viewcnt FROM article";
        		 	ResultSet rs = stmt.executeQuery(sql);

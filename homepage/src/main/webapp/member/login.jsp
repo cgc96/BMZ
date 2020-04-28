@@ -8,7 +8,6 @@
 </head>
 <body>
 <script>
-	alert("로그아웃 되었습니다.");
 	self.location="/homepage/home.jsp";
 </script>
 </body>

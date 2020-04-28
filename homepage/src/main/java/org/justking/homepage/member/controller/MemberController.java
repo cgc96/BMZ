@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/member/*")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
@@ -91,7 +91,7 @@ public class MemberController {
 	
 	// 닉네임 중복 검사(AJAX)
 	@RequestMapping(value = "/check_nickname.do", method = RequestMethod.POST)
-	public void check_nickname(@RequestParam("nickName") String nickname, HttpServletResponse response) throws Exception{
+	public void check_nickname(@RequestParam("nickname") String nickname, HttpServletResponse response) throws Exception{
 		service.check_nickname(nickname, response);
 	}
 
@@ -109,7 +109,7 @@ public class MemberController {
 	
 	
 	// 회원 가입 폼 이동
-	@RequestMapping(value = "/memberJoinForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberJoinForm.do")
 	public String memberJoinForm() throws Exception{
 		return "/member/memberJoinForm";
 	}
@@ -124,16 +124,16 @@ public class MemberController {
 	
 	// 로그인 폼 이동
 	@RequestMapping(value = "/login_form.do", method = RequestMethod.GET)
-	public String login_form(@ModelAttribute("MemberDTO") MemberDTO member) throws Exception{
+	public String login_form() throws Exception{
 		return "/member/loginForm";
 	}
 	
 	// 로그인
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
-		member =service.login(member, response);
+		member = service.login(member, response);
 		session.setAttribute("member", member);
-		return "home";
+		return "/member/login";
 	}
 	
 	
