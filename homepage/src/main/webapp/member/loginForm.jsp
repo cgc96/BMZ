@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,12 @@
 <script>
 	$(function(){
 		$("#find_id_btn").click(function(){
-			location.href='../member/find_id_form.do';
+			location.href='./member/find_id_form.do';
 		});
 	})
 	$(function(){
 		$("#find_pw_btn").click(function(){
-			location.href='../member/find_pw_form.do';
+			location.href='./member/find_pw_form.do';
 		});
 	})
 </script>
@@ -34,18 +35,18 @@
 	 <div class="form-group">
       <label for="exampleInputPassword1">ID</label>
 		<span class="badge badge-primary badge-pill" title="아이디 찾기" id="find_id_btn">!</span>
-      <input type="text" class="form-control" id="id" name="id" >
+      <input type="text" class="form-control" id="id" name="id" required>
     </div>
 	
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
 		<span class="badge badge-primary badge-pill" title="비밀번호 찾기" id="find_pw_btn">!</span>
-      <input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
+      <input type="password" class="form-control" id="pw" name="pw" placeholder="Password" required>
     </div>
 	
 	<p>
 	<button type= "submit" class="btn btn-primary btn-lg">Log in</button>
-		<button type="button" class="btn btn-primary btn-lg" onclick="history.go(-1)">Cancel</button>
+	<button type= "button" class="btn btn-primary btn-lg" onclick="history.go(-1)">Cancel</button>
 	</p>
     </fieldset>
 </form>
