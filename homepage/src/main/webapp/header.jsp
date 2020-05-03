@@ -22,59 +22,61 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/homepage/board/listPaging">강서구<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/homepage/gangseo/gangseo">강서구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">금정구</a>
+        <a class="nav-link" href="/homepage/geumjeong/geumjeong">금정구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">남구</a>
+        <a class="nav-link" href="/homepage/namgu/namgu">남구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">동구</a>
+        <a class="nav-link" href="/homepage/donggu/donggu">동구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">동래구</a>
+        <a class="nav-link" href="/homepage/dongnae/dongnae">동래구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">부산진구</a>
+        <a class="nav-link" href="/homepage/busanjin/busanjin">부산진구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">북구</a>
+        <a class="nav-link" href="/homepage/bukgu/bukgu">북구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">사상구</a>
+        <a class="nav-link" href="/homepage/sasang/sasang">사상구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">사하구</a>
+        <a class="nav-link" href="/homepage/saha/saha">사하구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">서구</a>
+        <a class="nav-link" href="/homepage/seogu/seogu">서구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">수영구</a>
+        <a class="nav-link" href="/homepage/suyeong/suyeong">수영구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">연제구</a>
+        <a class="nav-link" href="/homepage/yeonje/yeonje">연제구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">영도구</a>
+        <a class="nav-link" href="/homepage/yeongdo/yeongdo">영도구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">중구</a>
+        <a class="nav-link" href="/homepage/junggu/junggu">중구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">해운대구</a>
+        <a class="nav-link" href="/homepage/haeundae/haeundae">해운대구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">기장군</a>
+        <a class="nav-link" href="/homepage/gijang/gijang">기장군</a>
       </li>
     </ul>
 		<%
     	HttpSession session = request.getSession(false);
 		//Object member = session.getAttribute("member"); 
 		if(session != null && session.getAttribute("member") != null){%>
+			(${ member.id }123)
 			<input type="button" class="btn btn-danger" value = "마이페이지" onclick = "location.href='./member/mypage.do'">
+			(${ member.id })
 			<input type="button" class="btn btn-danger" value = "로그아웃"  onclick = "location.href='./member/logout.do'">
 		<% 
 		}

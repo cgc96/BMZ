@@ -11,6 +11,7 @@ public class BoardDTO {
 	private int viewCnt;
 	private int likes;
 	private int dislikes;
+	private String gu;
 	
 	private Integer hot_articleNo;
 	private String hot_title;
@@ -129,13 +130,21 @@ public class BoardDTO {
 	public void setHot_dislikes(int hot_dislikes) {
 		this.hot_dislikes = hot_dislikes;
 	}
+	
+	public String getGu() {
+		return gu;
+	}
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
 	@Override
 	public String toString() {
 		return "BoardDTO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", likes=" + likes + ", dislikes=" + dislikes
-				+ ", hot_articleNo=" + hot_articleNo + ", hot_title=" + hot_title + ", hot_content=" + hot_content
-				+ ", hot_writer=" + hot_writer + ", hot_regDate=" + hot_regDate + ", hot_viewCnt=" + hot_viewCnt
-				+ ", hot_likes=" + hot_likes + ", hot_dislikes=" + hot_dislikes + ", comt_count=" + comt_count + "]";
+				+ ", gu=" + gu + ", hot_articleNo=" + hot_articleNo + ", hot_title=" + hot_title + ", hot_content="
+				+ hot_content + ", hot_writer=" + hot_writer + ", hot_regDate=" + hot_regDate + ", hot_viewCnt="
+				+ hot_viewCnt + ", hot_likes=" + hot_likes + ", hot_dislikes=" + hot_dislikes + ", comt_count="
+				+ comt_count + "]";
 	}
 	
 	

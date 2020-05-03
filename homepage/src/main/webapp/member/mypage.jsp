@@ -49,7 +49,7 @@
 				<form id="myForm" action="../member/update_mypage.do" method="post">
 					<p>
 						<label>ID</label> 
-						<input class="w3-input" type="text" id="id" name="id" readonly value="${ member.id }"> 
+						<input class="w3-input" type="text" id="id" name="id" readonly value="${ member.id }">
 					</p>
 					<p>
 						<label>Email</label> 
