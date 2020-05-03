@@ -8,7 +8,103 @@
 	<!-- 게시판 글 작성 -->
 	<insert id="create">
 		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, ${dislikes})
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes})
+	</insert>
+	
+	<!-- 금정구 게시판 글 작성 -->
+	<insert id="1create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'geumjeong')
+	</insert>
+
+	<!-- 북구 게시판 글 작성 -->
+	<insert id="2create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'bukgu')
+	</insert>
+	
+	<!-- 남구 게시판 글 작성 -->
+	<insert id="3create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'namgu')
+	</insert>
+	
+	<!-- 부산진구 게시판 글 작성 -->
+	<insert id="4create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'busanjin')
+	</insert>
+	
+	<!-- 동구 게시판 글 작성 -->
+	<insert id="5create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'donggu')
+	</insert>
+	
+	<!-- 강서구 게시판 글 작성 -->
+	<insert id="6create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'gangseo')
+	</insert>
+	
+	<!-- 동래구 게시판 글 작성 -->
+	<insert id="7create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'dongnae')
+	</insert>
+	
+	<!-- 기장 게시판 글 작성 -->
+	<insert id="8create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'gijang')
+	</insert>
+	
+	<!-- 중구 게시판 글 작성 -->
+	<insert id="9create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'junggu')
+	</insert>
+	
+	<!-- 사하구 게시판 글 작성 -->
+	<insert id="10create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'saha')
+	</insert>
+	
+	<!-- 사상 게시판 글 작성 -->
+	<insert id="11create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'sasang')
+	</insert>
+	
+	<!-- 서구 게시판 글 작성 -->
+	<insert id="12create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'seogu')
+	</insert>
+	
+	<!-- 수영 게시판 글 작성 -->
+	<insert id="13create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'suyeong')
+	</insert>
+	
+	<!-- 영도 게시판 글 작성 -->
+	<insert id="14create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'yeongdo')
+	</insert>
+	
+	<!-- 해운대 게시판 글 작성 -->
+	<insert id="15create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'haeundae')
+	</insert>
+	
+	<!-- 연제 게시판 글 작성 -->
+	<insert id="16create">
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, gu)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, 'yeonje')
 	</insert>
 	
 	<select id="read" resultMap="ArticleResultMap">
@@ -16,6 +112,7 @@
 		FROM article
 		WHERE article_no = #{articleNo}
 	</select>
+	
 	
 	<update id="update">
 		UPDATE article
@@ -29,23 +126,7 @@
 		DELETE FROM article
 		WHERE article_no = #{articleNo}
 	</delete>
-	
-	<!-- resultMap 자바와 DB 사이에 다른 변수명을 일치 시켜준다.-->
-	<select id="listAll" resultMap="ArticleResultMap">
-		<![CDATA[
-		SELECT article_no, 
-			title, 
-			content, 
-			writer, 
-			regdate,
-			viewcnt,
-			likes,
-			dislikes
-		FROM article
-		WHERE article_no > 0
-		ORDER BY article_no DESC, regdate DESC
-		]]>
-	</select>
+
 	
 	<!-- 페이지당 10개씩 출력-->
 	<select id="listPaging" resultMap="ArticleResultMap">
@@ -59,11 +140,303 @@
 			likes,
 			dislikes
 		FROM article
-		WHERE article_no > 0
+		WHERE article_no > 0 
+				
 		ORDER BY article_no DESC, regdate DESC
 		LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
+	
+	<!-- 금정구 페이지당 10개씩 출력-->
+	<select id="geumjeong" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'geumjeong'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+		<!-- 강서구 페이지당 10개씩 출력-->
+	<select id="gangseo" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'gangseo'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="namgu" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'namgu'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="haeundae" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'haeundae'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="bukgu" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'bukgu'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="busanjin" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'busanjin'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="donggu" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'donggu'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="dongnae" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'dongnae'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="gijang" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'gijang'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="junggu" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'junggu'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="saha" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'saha'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="sasang" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'sasang'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="seogu" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'seogu'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="suyeong" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'suyeong'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="yeongdo" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'yeongdo'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="yeonje" resultMap="ArticleResultMap">
+		<![CDATA[
+		SELECT article_no, 
+			title, 
+			content, 
+			writer, 
+			regdate,
+			viewcnt,
+			likes,
+			dislikes
+		FROM article
+		WHERE article_no > 0 and
+				gu = 'yeonje'
+		ORDER BY article_no DESC, regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
 	
 	<!-- 게시물 개수-->
 	<select id="countArticles" resultType="int">
@@ -122,6 +495,9 @@
 		<result property = "regDate" column="regdate"/>
 		<result property = "viewCnt" column="viewcnt"/>
 		<result property = "likes" column="likes"/>
+		<result property = "dislikes" column="dislikes"/>
+		<result property = "gu" column="gu"/>
+		
 	</resultMap>
 	
 

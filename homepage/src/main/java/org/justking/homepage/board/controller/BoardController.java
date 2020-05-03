@@ -85,7 +85,39 @@ public class BoardController {
 //		return "/board/list_criteria";
 //	}	
 	
-	//페이지 번호 출력, 핫목록페이지
+	//금정구 게시판 페이지
+	@RequestMapping(value = "/geumjeong", method = RequestMethod.GET)
+	public String geumjeong(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("geumjeong...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("boards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/Gu/geumjeong";
+	}	
+	
+	//남구 게시판 페이지
+	@RequestMapping(value = "/namgu", method = RequestMethod.GET)
+	public String namgu(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("namgu...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("boards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/Gu/namgu";
+	}	
+	
+	//페이지 번호 출력, 목록페이지
 	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception{
 		

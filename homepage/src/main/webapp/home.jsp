@@ -10,6 +10,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
 
@@ -37,7 +39,7 @@
 			<% 
     		try {
        			Class.forName("com.mysql.jdbc.Driver");
-       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+       			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "ehddnr741");
        			Statement stmt = conn.createStatement();
        			String sql = "SELECT article_no, title, viewcnt FROM article";
        		 	ResultSet rs = stmt.executeQuery(sql);
