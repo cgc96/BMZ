@@ -22,52 +22,52 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/homepage/gangseo/gangseo">강서구</a>
+        <a class="nav-link" href="/homepage/Gu/gangseo/gangseo">강서구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/geumjeong/geumjeong">금정구</a>
+        <a class="nav-link" href="/homepage/Gu/geumjeong/geumjeong">금정구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/namgu/namgu">남구</a>
+        <a class="nav-link" href="/homepage/Gu/namgu/namgu">남구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/donggu/donggu">동구</a>
+        <a class="nav-link" href="/homepage/Gu/donggu/donggu">동구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/dongnae/dongnae">동래구</a>
+        <a class="nav-link" href="/homepage/Gu/dongnae/dongnae">동래구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/busanjin/busanjin">부산진구</a>
+        <a class="nav-link" href="/homepage/Gu/busanjin/busanjin">부산진구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/bukgu/bukgu">북구</a>
+        <a class="nav-link" href="/homepage/Gu/bukgu/bukgu">북구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/sasang/sasang">사상구</a>
+        <a class="nav-link" href="/homepage/Gu/sasang/sasang">사상구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/saha/saha">사하구</a>
+        <a class="nav-link" href="/homepage/Gu/saha/saha">사하구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/seogu/seogu">서구</a>
+        <a class="nav-link" href="/homepage/Gu/seogu/seogu">서구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/suyeong/suyeong">수영구</a>
+        <a class="nav-link" href="/homepage/Gu/suyeong/suyeong">수영구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/yeonje/yeonje">연제구</a>
+        <a class="nav-link" href="/homepage/Gu/yeonje/yeonje">연제구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/yeongdo/yeongdo">영도구</a>
+        <a class="nav-link" href="/homepage/Gu/yeongdo/yeongdo">영도구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/junggu/junggu">중구</a>
+        <a class="nav-link" href="/homepage/Gu/junggu/junggu">중구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/haeundae/haeundae">해운대구</a>
+        <a class="nav-link" href="/homepage/Gu/haeundae/haeundae">해운대구</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/homepage/gijang/gijang">기장군</a>
+        <a class="nav-link" href="/homepage/Gu/gijang/gijang">기장군</a>
       </li>
     </ul>
 		<%

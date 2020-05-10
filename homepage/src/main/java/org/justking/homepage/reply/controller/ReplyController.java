@@ -6,10 +6,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.justking.homepage.board.controller.BoardController;
 import org.justking.homepage.commons.paging.Criteria;
 import org.justking.homepage.commons.paging.PageMaker;
 import org.justking.homepage.reply.db.ReplyDTO;
 import org.justking.homepage.reply.service.ReplyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("replies")
 public class ReplyController {
-	
+	private static final Logger logger = LoggerFactory.getLogger(ReplyController.class);
+
 	private final ReplyService replyService;
 	
 	@Inject
@@ -91,6 +95,8 @@ public class ReplyController {
 	@RequestMapping(value = "/{replyNo}", method = {RequestMethod.PUT,RequestMethod.PATCH})
 	public ResponseEntity<String> update(@PathVariable("replyNo") Integer replyNo,@RequestBody ReplyDTO reply){
 		ResponseEntity<String> entity = null;
+		logger.info("clar");
+
 		try {
 			reply.setReplyNo(replyNo);
 			replyService.update(reply);
@@ -107,6 +113,7 @@ public class ReplyController {
 	@RequestMapping(value = "/{replyNo}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("replyNo") Integer replyNo){
 		ResponseEntity<String> entity = null;
+
 		try {
 			replyService.delete(replyNo);
 			entity = new ResponseEntity<>("delSuccess",HttpStatus.OK);
