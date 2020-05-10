@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.css">
-<%@ include file = "../resources/header.jsp" %>
+
 
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
@@ -30,6 +30,7 @@
 		alert("게시글 삭제가 완료되었습니다.");
 	}
 </script>
+<%@ include file = "../header.jsp" %>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
 
 <div class="jumbotron">
   <h1 class="display-3">강서구 지도자리</h1>
-  <p class="lead">준희 화이팅  (${ member.id }) </p>
+  <p class="lead">준희 화이팅  (,${ login.id }, ${ member.id }) </p>
 </div>
 
 <div class="col-lg-12">
@@ -56,6 +57,9 @@
                 	 <th style="width: 150px">작성자</th>
                  	 <th style="width: 200px">작성시간</th>
                  	 <th style="width: 60px">조회</th>
+                 	 <th style="width: 60px">추천</th>
+                 	 <th style="width: 80px">비추천</th>
+                 	                  	 
                    </tr>
                   </thead>
                   <tbody>
@@ -68,6 +72,9 @@
                      <td>${board.writer} </td>
                      <td><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value ="${board.regDate}"/></td>
                      <td><span class="badge bg-aqua">${board.viewCnt}</span></td>
+                     <td><span class="badge bg-aqua">${board.likes}</span></td>
+                     <td><span class="badge bg-aqua">${board.dislikes}</span></td>
+                     
                   </tr>
                   </c:forEach>
                   </tbody>

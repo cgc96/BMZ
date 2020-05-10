@@ -14,11 +14,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<%@ include file = "../resources/header.jsp" %>
+
+<%@ include file = "../header.jsp" %>
 </head>
 
 <body>
-
 
 
 <div class="jumbotron">
@@ -60,6 +60,9 @@
 	        	<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 삭제</button>
 	        </div>
 	    </c:if>
+	    <button type ="submit"  class="btn btn-primary btnRecommend"> 좋아요! </button>
+	    <button type ="submit"  class="btn btn-primary btnNonRecommend"> 싫어요! </button>
+	    
        </div>
        	
   </div>
@@ -369,15 +372,35 @@
 
 			formObj.submit();            
         });
-     	// 수정 완료시 알림
+
+        $(".btnRecommend").on("click",function(){
+        	formObj.attr("action","../board/recommend")
+	       	formObj.attr("method", "get");
+
+        	alert("해당 게시물을 추천하였습니다.");
+        	
+			formObj.submit();            
+
+        });
+        $(".btnNonRecommend").on("click",function(){
+        	formObj.attr("action","../board/nonrecommend")
+	       	formObj.attr("method", "get");
+
+        	alert("해당 게시물을 비추천하였습니다.");
+        	
+			formObj.submit();            
+
+        });
+                
+        // 수정 완료시 알림
         var result = "${msg}";
-        if (result == "MODIFIED") {
+        if (result == "modSucccess") {
             alert("게시글이 수정되었습니다.");
         }
 
     })
+   
 </script>
-
 </body>
 
 

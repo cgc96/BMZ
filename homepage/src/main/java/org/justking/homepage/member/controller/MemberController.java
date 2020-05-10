@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/member/*")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
@@ -45,7 +45,7 @@ public class MemberController {
 	// mypage 수정
 	@RequestMapping(value = "/update_mypage.do", method = RequestMethod.POST)
 	public String update_mypage(@ModelAttribute("MemberDTO") MemberDTO member, Model model, HttpSession session, RedirectAttributes rttr) throws Exception{
-		session.setAttribute("login", service.update_mypage(member));
+		session.setAttribute("member", service.update_mypage(member));
 		rttr.addFlashAttribute("msg", "회원정보 수정 완료");
 		return "redirect:/member/mypage.do";
 	}
@@ -53,7 +53,7 @@ public class MemberController {
 	// 비밀번호 변경
 	@RequestMapping(value = "/update_pw.do", method = RequestMethod.POST)
 	public String update_pw(@ModelAttribute("MemberDTO") MemberDTO member,Model model, @RequestParam("old_pw") String old_pw, HttpSession session, HttpServletResponse response, RedirectAttributes rttr) throws Exception{
-		model.addAttribute("member", service.update_pw(member, old_pw, response));
+		session.setAttribute("member", service.update_pw(member, old_pw, response));
 		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
 		return "redirect:/member/mypage.do";
 	}
@@ -91,7 +91,7 @@ public class MemberController {
 	
 	// 닉네임 중복 검사(AJAX)
 	@RequestMapping(value = "/check_nickname.do", method = RequestMethod.POST)
-	public void check_nickname(@RequestParam("nickName") String nickname, HttpServletResponse response) throws Exception{
+	public void check_nickname(@RequestParam("nickname") String nickname, HttpServletResponse response) throws Exception{
 		service.check_nickname(nickname, response);
 	}
 
@@ -109,7 +109,7 @@ public class MemberController {
 	
 	
 	// 회원 가입 폼 이동
-	@RequestMapping(value = "/memberJoinForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberJoinForm.do")
 	public String memberJoinForm() throws Exception{
 		return "/member/memberJoinForm";
 	}
@@ -118,26 +118,22 @@ public class MemberController {
 	@RequestMapping(value = "/join_member", method = RequestMethod.POST)
 	public String join_member(@ModelAttribute MemberDTO member, RedirectAttributes rttr, HttpServletResponse response) throws Exception{
 		rttr.addFlashAttribute("result", service.join_member(member, response));
-		return "redirect:./login_form";
+		return "redirect:./login_form.do";
 	}
 
 	
 	// 로그인 폼 이동
-	@RequestMapping(value = "/login_form", method = RequestMethod.GET)
-	public String login_form(@ModelAttribute("MemberDTO") MemberDTO member) throws Exception{
+	@RequestMapping(value = "/login_form.do", method = RequestMethod.GET)
+	public String login_form() throws Exception{
 		return "/member/loginForm";
 	}
 	
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
-		Object user =service.login(member, response);
-		logger.info("hi1");
-		
-		logger.info("h2");
-		model.addAttribute("member", user);
-		logger.info("hi3");
-		return "home";
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	public String login(@ModelAttribute MemberDTO member, HttpSession session, HttpServletResponse response) throws Exception{
+		member = service.login(member, response);
+		session.setAttribute("member", member);
+		return "/member/login";
 	}
 	
 	
@@ -146,11 +142,8 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception{
 		//session.invalidate();
-		Object object = session.getAttribute("login");
-		if(object!=null) {
-			session.removeAttribute("login");
-			session.invalidate();
-		}
+		session.invalidate();
+		service.logout(response);
 		return "/member/logout";
 	}
 }

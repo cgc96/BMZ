@@ -6,7 +6,7 @@ public class MemberDTO {
 	private String id;
 	private String pw;
 	private String email;
-	private String nickName;
+	private String nickname;
 	private Date reg_date;
 	private Date log_date;
 
@@ -52,16 +52,16 @@ public class MemberDTO {
 
 
 	public String getNickName() {
-		return nickName;
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickName(String nickname) {
+		this.nickname = nickname;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", pw=" + pw + ", email=" + email + ", nickName=" + nickName + ", reg_date="
+		return "MemberDTO [id=" + id + ", pw=" + pw + ", email=" + email + ", nickname=" + nickname + ", reg_date="
 				+ reg_date + ", log_date=" + log_date + "]";
 	}
 	

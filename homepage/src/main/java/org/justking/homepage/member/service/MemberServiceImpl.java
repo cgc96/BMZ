@@ -121,47 +121,7 @@ public class MemberServiceImpl implements MemberService {
 	// 이메일 발송
 	@Override
 	public void send_mail(MemberDTO member, String div) throws Exception {
-		// Mail Server 설정
-		String charSet = "utf-8";
-		String hostSMTP = "smtp.naver.com";
-		String hostSMTPid = "hdw9610@naver.com";
-		String hostSMTPpwd = "ehddnr5103!";
-
-		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "hdw9610@naver.com";
-		String fromName = "Spring Homepage";
-		String subject = "";
-		String msg = "";
-
-		if(div.equals("find_pw")) {
-			subject = "Spring Homepage 임시 비밀번호 메일입니다.";
-			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-			msg += "<h3 style='color: blue;'>";
-			msg += member.getId() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
-			msg += "<p>임시 비밀번호 : ";
-			msg += member.getPw() + "</p></div>";
-			
-		}
-		// 받는 사람 E-Mail 주소
-		String mail = member.getEmail();
-		try {
-			HtmlEmail email = new HtmlEmail();
-			email.setDebug(true);
-			email.setCharset(charSet);
-			email.setSSL(true);
-			email.setHostName(hostSMTP);
-			email.setSmtpPort(587);
-
-			email.setAuthentication(hostSMTPid, hostSMTPpwd);
-			email.setTLS(true);
-			email.addTo(mail, charSet);
-			email.setFrom(fromEmail, fromName, charSet);
-			email.setSubject(subject);
-			email.setHtmlMsg(msg);
-			email.send();
-		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
-		}
+		
 	}
 			
 	// 아이디 중복 검사(AJAX)
@@ -173,6 +133,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 닉네임 중복 검사(AJAX)
+	@Override
 	public void check_nickname(String nickname, HttpServletResponse response) throws Exception  {
 		PrintWriter out = response.getWriter();
 		out.println(manager.check_nickname(nickname));
@@ -217,7 +178,6 @@ public class MemberServiceImpl implements MemberService {
 			return 0;
 		} else {
 			manager.join_member(member);
-
 			return 1;
 		}
 	}
@@ -226,8 +186,10 @@ public class MemberServiceImpl implements MemberService {
 	// 로그인
 	@Override
 	public MemberDTO login(MemberDTO member, HttpServletResponse response) throws Exception {
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
 		// 등록된 아이디가 없으면
 		if(manager.check_id(member.getId()) == 0) {
 			out.println("<script>");

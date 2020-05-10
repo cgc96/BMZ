@@ -21,11 +21,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		ModelMap modelMap = modelAndView.getModelMap();
 		logger.info("hi5");
 		Object memberDTO = modelMap.get("member");
-
+		System.out.print(memberDTO);
+		
 		if(memberDTO != null) {
 			logger.info("new login success");
 			httpSession.setAttribute(LOGIN, memberDTO);
-			response.sendRedirect("../../home");
+			response.sendRedirect("/homepage/");
 		}
 	}
 	
@@ -33,7 +34,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
 		HttpSession httpSession = request.getSession();
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//±âÁ¸ÀÇ ·Î±×ÀÎ Á¤º¸ Á¦°Å
 		if(httpSession.getAttribute(LOGIN) != null) {
 			logger.info("clear login data before");
 			httpSession.removeAttribute(LOGIN);

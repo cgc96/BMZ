@@ -1,107 +1,139 @@
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
+<%@ page import="java.sql.*" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
-<%@ include file = "./resources/header.jsp" %>
+
+ <jsp:include page = "./header.jsp" /> 
+
 </head>
 
 <body>
-
-
+         <% 
+            String sql = "SELECT a.article_no, a.title, a.viewcnt, a.gu FROM article a WHERE 5 > (SELECT count(b.title) FROM article b WHERE a.gu = b.gu and a.regdate < b.regdate) ORDER BY a.regdate DESC";
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+         %>
+             
 <div class="jumbotron">
   <h1 class="display-2">지도자리</h1>
-  <p class="lead">준희 화이팅 (${ member.id }) </p>
-  
+  <p class="lead">준희 화이팅 ((${ member.id }), (${ login.id })) </p>
 </div>
-	
- <div class="container">
+  
+<div class="container">
       <div class="row">
         <div class="col-4">
           <div class="card border-primary mb-3">
             <div class="card-header">
-             	 사하구
-            </div>
-            
-            <table class="table table-bordered">
-                  <tbody>
-                  <%
-       			 Class.forName("com.mysql.jdbc.Driver");
-       			 Connection conn = null;
-       			 PreparedStatement pstmt = null;
-       			 ResultSet rs = null;
-         
-      			  try{
-       			     	String jdbcDriver = "jdbc:mysql://localhost:3306/homepage?useUnicode=true&characterEncoding=utf8";
-			            String dbUser = "root";
-			            String dbPwd = "1234";
-			             
-			            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
-			             
-			            pstmt = conn.prepareStatement("select * from article");
-			             
-			            rs = pstmt.executeQuery();
-			             
-			            while(rs.next()){
-			            	int no = rs.getInt("article_no");
-			    %>
-			        <tr>
-			            <td><%= no %></td>
-			            <td>
-                     	<a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=no%>"><%= rs.getString("title") %></a>
-                    	</td>
-			            <td><%= rs.getString("viewcnt") %></td>
-			        </tr>
-			    <%
-			            }
-			        }catch(SQLException se){
-			            se.printStackTrace();
-			        }finally{
-			            if(rs != null) rs.close();
-			            if(pstmt != null) pstmt.close();
-			            if(conn != null) conn.close();
-			        }
-			    %>
-                  </tbody>
-             </table>
-    			
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card border-primary mb-3">
-            <div class="card-header">
-             	 부산진구
+                 사하구
             </div>
             <div class="card-body">
-              <p class="card-text">부산진구.jsp내용 들고옵시다. </p>
-              <p class="card-text">부산진구.jsp내용 들고옵시다. </p>
-              <p class="card-text">부산진구.jsp내용 들고옵시다. </p>
-              <p class="card-text">부산진구.jsp내용 들고옵시다. </p>
-              <p class="card-text">부산진구.jsp내용 들고옵시다. </p>
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("saha"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
             </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card border-primary mb-3">
             <div class="card-header">
-            	  해운대구
+                 부산진구
             </div>
-            <div class="card-body">
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
+<div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("busanjin"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 해운대구
+            </div>
+<div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("haeundae"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
             </div>
           </div>
         </div>
@@ -109,18 +141,445 @@
         <div class="col-4">
           <div class="card border-primary mb-3">
             <div class="card-header">
-              	빵구
+                 동구
             </div>
-            <div class="card-body">
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
-              <p class="card-text">해운대구.jsp내용 들고옵시다. </p>
+<div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("donggu"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
             </div>
           </div>
         </div>
-        
+        <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 북구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("bukgu"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./Gu/bukgu/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 동래구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("dongnae"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 강서구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("gangseo"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 금정구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("geumjeong"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 기장군
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("gijang"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 중구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("junggu"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 남구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("namgu"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 사상구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("sasang"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+       <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 서구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("seogu"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 수영구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("suyeong"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+       <div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 연제구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("yeonje"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
+<div class="col-4">
+          <div class="card border-primary mb-3">
+            <div class="card-header">
+                 영도구
+            </div>
+            <div class="card-body">
+         <table class = "table table-hover">
+         <tbody>
+             <%
+          try {
+             rs.beforeFirst();
+                while(rs.next()) {
+                   if(!rs.getString("gu").equals("yeongdo"))
+                      continue;
+                   int num = rs.getInt("article_no");
+                   %>
+                   <tr>
+                      <td><%= num %></td>
+                      <td>
+                      <a href="./board/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=<%=num%>"><%=rs.getString("title")%></a>
+                      </td>
+                      <td><%=rs.getInt("viewcnt")%></td>
+                   </tr>
+                   <%
+                }
+          } catch (Exception e) {
+             e.printStackTrace();
+          }
+            %>
+            </tbody>        
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
 </div>
 

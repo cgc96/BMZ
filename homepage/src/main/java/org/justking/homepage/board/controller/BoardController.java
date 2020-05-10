@@ -29,14 +29,32 @@ public class BoardController {
 		this.boardService = boardService;
 	}
 	
-	//µî·Ï ÆäÀÌÁö ÀÌµ¿
+
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
+	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.nonrecommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","nonliSuccess");
+
+		return "redirect:/board/listPaging";
+	}
+
+	@RequestMapping(value = "/recommend", method = {RequestMethod.GET, RequestMethod.POST})
+	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
+		boardService.recommend(articleNo);
+		redirectAttributes.addFlashAttribute("msg","liSuccess");
+		boardService.hotcreate(board);
+		
+		return "redirect:/board/listPaging";
+	}
+
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String writeGET() {
 		logger.info("wrtie GET...");
 		return "/board/write";
 	}
-	
-	//µî·Ï Ã³¸®
+
+
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePOST(BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -48,7 +66,7 @@ public class BoardController {
 		return "redirect:/board/listPaging";
 	}
 	
-//	//¸ñ·Ï ÆäÀÌÁö ÀÌµ¿
+//	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 //	@RequestMapping(value = "/list", method = RequestMethod.GET)
 //	public String list(Model model) throws Exception{
 //		
@@ -58,7 +76,7 @@ public class BoardController {
 //		return "/board/list";
 //	}
 	
-//	//ÆäÀÌÂ¡ Ã³¸®
+//	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 //	@RequestMapping(value = "/listCriteria", method = RequestMethod.GET)
 //	public String listCriteria(Model model, Criteria criteria) throws Exception{
 //		
@@ -67,7 +85,39 @@ public class BoardController {
 //		return "/board/list_criteria";
 //	}	
 	
-	//ÆäÀÌÁö ¹øÈ£ Ãâ·Â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/geumjeong", method = RequestMethod.GET)
+	public String geumjeong(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("geumjeong...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("boards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/Gu/geumjeong";
+	}	
+	
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/namgu", method = RequestMethod.GET)
+	public String namgu(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("namgu...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("boards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/Gu/namgu";
+	}	
+	
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception{
 		
@@ -83,7 +133,23 @@ public class BoardController {
 		return "/board/list_paging";
 	}	
 	
-//	//Á¶È¸ ÆäÀÌÁö ÀÌµ¿
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½, ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/hot_listPaging", method = RequestMethod.GET)
+	public String hot_listPaging(Model model, Criteria criteria) throws Exception{
+		
+		logger.info("hotlistPaging...");
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		
+		model.addAttribute("hotboards",boardService.listCriteria(criteria));
+		model.addAttribute("pageMaker",pageMaker);
+		
+		return "/board/hot_list";
+	}	
+	
+//	//ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 //	@RequestMapping(value = "/read", method = RequestMethod.GET)
 //	public String read(@RequestParam("articleNo") int articleNo, 
 //			Model model) throws Exception{
@@ -94,7 +160,7 @@ public class BoardController {
 //		return "/board/read";
 //	}
 
-	//Á¶È¸ ÆäÀÌÁö ÀÌµ¿
+	//ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(@RequestParam("articleNo") int articleNo, 
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -105,7 +171,7 @@ public class BoardController {
 		return "/board/read";
 	}
 
-	//¼öÁ¤ ÆäÀÌÁö ÀÌµ¿
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyGET(@RequestParam("articleNo") int articleNo,
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -116,7 +182,7 @@ public class BoardController {
 		return "/board/modify";
 	}
 	
-	//¼öÁ¤ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardDTO board, Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -129,7 +195,7 @@ public class BoardController {
 		return "redirect:/board/listPaging";
 	}
 	
-	//»èÁ¦ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("articleNo") int articleNo, 
 			Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
