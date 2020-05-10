@@ -19,7 +19,7 @@
 		<property name="driverClass" value="org.mariadb.jdbc.Driver" />
 		<property name="url" value="jdbc:mariadb://localhost:3306/homepage" />
 		<property name="username" value="root" />
-		<property name="password" value="ehddnr741" />
+		<property name="password" value="1234" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
