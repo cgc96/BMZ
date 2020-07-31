@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="ReplyDTO" type="org.justking.homepage.reply.db.ReplyDTO"/>
+		<typeAlias alias="member" type="org.justking.homepage.member.db.MemberDTO"/>
+		<typeAlias alias="BoardDTO"  type="org.justking.homepage.board.db.BoardDTO"/>
+	</typeAliases>
+</configuration>

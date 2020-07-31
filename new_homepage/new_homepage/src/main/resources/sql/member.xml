@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.justking.homepage.sql.member">
+	
+	<!-- 회원탈퇴 -->
+	<delete parameterType="member" id="withdrawal">
+		delete 
+		from member
+		where id = #{id} and pw = #{pw} 
+	</delete>
+	
+	<!-- 회원정보 수정 -->
+	<update parameterType="member" id="update_mypage">
+		update member 
+		set email = #{email} 
+		where id = #{id} 
+	</update>
+	
+	<!-- 아이디 중복 검사 -->
+	<select parameterType="String" id="check_id" resultType="int">
+		select count(*)
+		from member 
+		where id = #{id} 
+	</select>
+	
+	<!-- 닉네임 중복 검사 -->
+	<select parameterType="String" id="check_nickname" resultType="int">
+		select count(*) 
+		from member 
+		where nickname = #{nickname} 
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select parameterType="String" id="check_email" resultType="int">
+		select count(*)
+	 	from member 
+	 	where email = #{email}
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert parameterType="member" id="join_member">
+		insert into member values(#{id}, #{pw}, #{email}, #{nickname}, now(), now()); 
+	</insert>
+	
+	
+	<!-- 로그인 -->
+	<select parameterType="String" id="login" resultType="member">
+		select * 
+		from member 
+		where id = #{id} 
+	</select>
+	
+	<!-- 로그인 접속일자 수정 -->
+	<update parameterType="String" id="update_log">
+		update member 
+		set log_date = now() 
+		where id = #{id} 
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select parameterType="String" id="find_id" resultType="String">
+		select id 
+		from member 
+		where email = #{email} 
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select parameterType="String" id="find_pw" resultType="String">
+		select pw
+		from member 
+		where email = #{email} 
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update parameterType="member" id="update_pw">
+		update member 
+		set pw = #{pw}
+		where id = #{id} 
+	</update>
+
+</mapper>
