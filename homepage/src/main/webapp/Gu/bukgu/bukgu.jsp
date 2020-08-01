@@ -37,11 +37,6 @@
 
 
 
-<div class="jumbotron">
-  <h1 class="display-3">북구 지도자리</h1>
-  <p class="lead">준희 화이팅  (,${ login.id }, ${ member.id }) </p>
-</div>
-
 <div class="col-lg-12">
   <div class="box box-primary">
       <div class="box-header with-border">
@@ -110,7 +105,6 @@
   	</div>
   </div>
 </div>
-
 </body>
 
 </html>

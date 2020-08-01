@@ -37,10 +37,17 @@
  
 </head>
 
-<div class="jumbotron">
-  <h1 class="display-3">bukgu지도자리</h1>
-  <p class="lead">준희 화이팅 </p>
-</div>
+<script>
+	$(function(){
+		$("#writeForm").submit(function(){
+			if($("#title").val().length == 0){
+				alert("제목을 입력해주세요");
+				$("#title").val("").focus();
+				return false;
+			}
+		});
+	})
+</script>
 
  <div class="col-lg-12">
       <form role="form" id ="writeForm" method="post" action ="../bukgu/write">
@@ -51,7 +58,7 @@
             <div class="box-body">
                <div class="form-group">
                   <label for="title"> 제목</label>
-                  <input class="form-control" id = "JJJ" name="title">
+                  <input class="form-control" id = "title" name="title" placeholder="제목을 입력하세요..">
                </div>
                <div class="map_wrap">
                 <div id="mapp" style="width:50%;height:100%;position:relative;overflow:hidden;"></div>

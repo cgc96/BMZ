@@ -19,9 +19,11 @@ public interface MemberService {
 
 	String find_id(HttpServletResponse response, String email) throws Exception;
 
+	String find_pw(HttpServletResponse response, String email) throws Exception;
+
 	void send_mail(MemberDTO member, String div) throws Exception;
 
-	void find_pw(HttpServletResponse response, MemberDTO member) throws Exception;
+	//void find_pw(HttpServletResponse response, MemberDTO member) throws Exception;
 
 	MemberDTO update_mypage(MemberDTO member) throws Exception;
 

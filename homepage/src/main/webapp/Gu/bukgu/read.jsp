@@ -6,20 +6,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
-
 <%@ page import="javax.servlet.http.HttpServlet"%>
 <%@ page import = "org.justking.homepage.member.db.MemberDTO" %>
 <%@ page import = "org.justking.homepage.board.db.BoardDTO" %>
 <%@ page import = "org.springframework.ui.Model" %>
+<%@ page import="java.sql.*" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>부산 맛집</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -30,28 +31,177 @@
 <body>
 
 
-<div class="jumbotron">
-  <h1 class="display-3">bukgu지도자리</h1>
-  <p class="lead">준희 화이팅 </p>
+<form role="form" method="post">
+
+<input type="hidden" name="articleNo" value="${board.articleNo}">
+<input type="hidden" name="page" value="${criteria.page }">
+<input type="hidden" name="perPageNum" value="${criteria.perPageNum }">
+<input type="hidden" id = "mapp" name="map" value="${board.map}">
+
+</form>
+
+
+
+  
+  
+<div class="card"style="width:70%; margin:auto">
+
+  <h3 class="card-header">${board.title}
+  <%
+    HttpSession session = request.getSession(false);
+
+ 	if(session != null && session.getAttribute("member") != null){
+       MemberDTO member = (MemberDTO)session.getAttribute("member");
+       BoardDTO board = (BoardDTO)request.getAttribute("board");
+           		
+       if(member.getId().equals(board.getWriter())){%>
+		   <div style = "float:right;">
+		        <button type="submit" class="btn btn-warning modBtn" ><i class="fa fa-edit"></i> 수정</button>
+		        <button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 삭제</button>
+		   </div>
+		   <p style="clear:both;"> </p>
+		<%}
+ 	}%>
+ 	</h3>
+  <p></p>
+  
+
+  <div id="map" style="height:300px;"></div>
+	<p></p><p></p><p></p>
+  <div class="card-body">
+    <p class="card-text">${board.content} </p>
+  </div>
+  <p></p><p></p><p></p>
+  
+  <div style = "float:right;">
+  &nbsp;&nbsp;
+  작성자 : ${board.writer} &nbsp; | &nbsp;
+  작성일 : <span class="description"><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value="${board.regDate}"/></span>  &nbsp; | &nbsp;
+  조회수 : ${board.viewCnt}
+  </div>
+	<p style="clear:both;"></p>
+
+	<div style = "margin : auto;">
+	
+	    <button type ="submit"  class="btn btn-primary btnRecommend"> 좋아요! </button>
+	    <button type ="submit"  class="btn btn-primary btnNonRecommend"> 싫어요! </button>
+	</div>
+	<div style = "margin : auto;">
+    좋아요 : ${board.likes}  &nbsp;
+ 	싫어요 : ${board.dislikes} 
+    </div>
+  	<br/><br/>
+  	
+  	
+ 	<div class="repliesDiv"></div>
+ 	
+ 	<% 
+		
+		if(session != null && session.getAttribute("member") != null){
+			MemberDTO member = (MemberDTO)session.getAttribute("member"); 
+			if(member != null){%>
+				<div class ="box box-warning" >
+				<div class ="box-body" >
+					<form class="form-horizontal">
+						<div class ="form-group margin">
+							<div class="col-sm-10">
+								<textarea class="form-control" id="newReplyText" rows="3" placeholder="댓글을 입력하세요" style="resize: none"></textarea>
+							</div>
+							<div class="col-sm-2">
+								<input class="form-control" id = "newReplyWriter" readonly value = "<%= member.getNickName() %>">
+							</div>
+							<hr/>
+							<div class="col-sm-2">
+								<button type="button" class="btn btn-primary btn-block replyAddBtn"><i class="fa fa-save"></i> 작성</button>					
+							</div>
+						</div>
+					</form>	
+				</div>
+				
+				<div class="box-footer">
+					<div class="text-center">
+						<ul class="pagination pagination-sm no-margin">
+						
+						</ul>
+					</div>
+				</div>
+			 </div>
+			<%}
+		}
+		else{%>
+		
+			<div class="form-group">
+			  <fieldset disabled="">
+			    <input class="form-control" id="disabledInput" type="text" placeholder="댓글사용은 로그인 후 이용 가능합니다." disabled="">
+			  </fieldset>
+			</div>
+		<% }%>
+		
+ 	
+ </div>
+
+		
+		<!--
+		<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록 </button>
+        -->
+        
+         
+ 			
+
+
+<!-- 
+<div class="box box-success collapsed-box">
+
+	<%-- 댓글 목록 --%>
+	
+
+	<%-- 댓글 유무 / 댓글 개수 / 댓글 펼치기, 접기 
+	<div class="box-header with-border">
+		<a href="" class="link-black text-lg"><i class="fa fa-comments-o margin-r-5 replyCount"></i></a>
+		<div class="box-tools">
+			<button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-plus"></i>
+			</button>
+		</div>
+	</div>
+	--%>
+	
+	
+	
+</div>
+-->
+
+
+
+
+ 
+ <%--댓글 삭제 modal 영역 --%>
+<div class="modal" id="delModal">
+   <div class ="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class ="modal-title">댓글 삭제</h4>
+            <input type="hidden" class="replyNo"/>
+            
+         </div>
+         <div class="modal-body" data-replyNo>
+            <input type="hidden" class="replyNo"/>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">아니오.</button>
+            <button type="button" class="btn btn-primary modalDelBtn">네. 삭제합니다.</button>
+            
+         </div>
+      </div>
+   </div>
+
 </div>
 
-       <div class="box-footer">
-       	<form role="form" method="post">
-       		<input type="hidden" name="articleNo" value="${board.articleNo}">
-       		<input type="hidden" name="page" value="${criteria.page }">
-       		<input type="hidden" name="perPageNum" value="${criteria.perPageNum }">
-       		<input type="hidden" id = "mapp" name="map" value="${board.map}">
-		</form>
-<div class="col-lg-12">
-  <div class="box box-primary">
-       <div class="box-header with-border">
-          <h3 class="box-title">글제목 : ${board.map}</h3>
-       </div>
-       
-       
-			<div id="map" style="width:50%;height:300px;"></div>
-			
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ff585150b05b1bca64a36410ece9e8e&libraries=services"></script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ff585150b05b1bca64a36410ece9e8e&libraries=services"></script>
 			<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
@@ -90,142 +240,22 @@
 			    } 
 			});    
 			</script>
-       
-         <div class="box-body" style="height:700px">
-             ${board.content} 
-       </div>
-       <div class="box-footer">
-       		<div class="user-block">
-                <span class="username">
-                    
-                    <a href="#">${ member.id }</a>
-                </span>
-                <span class="description"><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value="${board.regDate}"/></span>
-            </div>
-       </div>
-        
-		
-		<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록 </button>
-         <%
-            HttpSession session = request.getSession(false);
-
- 			if(session != null && session.getAttribute("member") != null){
-           		MemberDTO member = (MemberDTO)session.getAttribute("member");
-           		BoardDTO board = (BoardDTO)request.getAttribute("board");
-           		
-          		if(member.getId().equals(board.getWriter())){
-           		%>
-		       		<div class="pull-right">
-		        		<button type="submit" class="btn btn-warning modBtn" ><i class="fa fa-edit"></i> 수정</button>
-		        		<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 삭제</button>
-		      	  </div>
-		   		 <%}
- 			}%>
- 			
-	    <button type ="submit"  class="btn btn-primary btnRecommend"> 좋아요! </button>
-	    <button type ="submit"  class="btn btn-primary btnNonRecommend"> 싫어요! </button>
-	    
-       </div>
-       	
-  </div>
-  
-</div>
-<div class ="box box-warning">
- 	<div class="box-header with-border">
-		<a class="link-black text-lg"><i class="fa fa-pencil"></i>   댓글작성</a>
-    </div>
-	<div class ="box-body">
-		<form class="form-horizontal">
-			<div class ="form-group margin">
-				<div class="col-sm-10">
-					<textarea class="form-control" id="newReplyText" rows="3" placeholder="댓글내용..." style="resize: none"></textarea>
-				</div>
-				<div class="col-sm-2">
-					<input class="form-control" id="newReplyWriter" type="text" placeholder="댓글작성자...">
-				</div>
-				<hr/>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary btn-block replyAddBtn"><i class="fa fa-save"></i> 작성</button>					
-				</div>
-			</div>
-		</form>	
-	</div>
- </div>
- 
- <%--댓글 삭제 modal 영역 --%>
-<div class="modal" id="delModal">
-   <div class ="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class ="modal-title">댓글 삭제</h4>
-            <input type="hidden" class="replyNo"/>
-            
-         </div>
-         <div class="modal-body" data-replyNo>
-            <input type="hidden" class="replyNo"/>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">아니오.</button>
-            <button type="button" class="btn btn-primary modalDelBtn">네. 삭제합니다.</button>
-            
-         </div>
-      </div>
-   </div>
-
-</div>
-
-<div class="box box-success collapsed-box">
-	<%-- 댓글 유무 / 댓글 개수 / 댓글 펼치기, 접기 --%>
-	<div class="box-header with-border">
-		<a href="" class="link-black text-lg"><i class="fa fa-comments-o margin-r-5 replyCount"></i></a>
-		<div class="box-tools">
-			<button type="button" class="btn btn-box-tool" data-widget="collapse">
-				<i class="fa fa-plus"></i>
-			</button>
-		</div>
-	</div>
-	
-	<%-- 댓글 목록 --%>
-	<div class="box-body repliesDiv">
-	
-	</div>
-	
-	<%-- 댓글 페이징 --%>
-	<div class="box-footer">
-		<div class="text-center">
-			<ul class="pagination pagination-sm no-margin">
-			
-			</ul>
-		</div>
-	</div>
-</div>
 
 <%--댓글 하나의 영역--%>
 <script id="replyTemplate" type="text/x-handlebars-template">
+	
     {{#each.}}
-    <div class="post replyDiv" data-replyNo={{replyNo}}>
-        <div class="user-block">
-            <%--댓글 작성자--%>
-            <span class="username">
-                <%--작성자 이름--%>
-                {{replyWriter}}</a>
-
-                <%--댓글 삭제 버튼--%>
-            <a class="pull-right btn-box-tool replyDelBtn" href="#" data-toggle="modal" data-target="#delModal">
-               <i class="fa fa-times"> 삭제</i>
-            </a>
-            
-            </span>
-            <%--댓글 작성일자--%>
-            <span class="description">{{prettifyDate regDate}}</span>
-        </div>
-        <%--댓글 내용--%>
-        <div class="oldReplytext">{{{escape replyText}}}</div>
-      <br/>
-    </div>
+	<hr>
+    <div class="post replyDiv"data-replyNo={{replyNo}}>
+		 
+		<h5>{{replyWriter}} &nbsp; <small class="text-muted">{{regDate}}</small>
+			<a class="replyDelBtn" href="#" data-toggle="modal" data-target="#delModal">
+           		<small class="fa fa-times"> 삭제 </small>
+        	</a>
+		</h5>
+		<div class="oldReplytext">{{{escape replyText}}}</div>
+		<p></p>
+	</div>
     {{/each}}
 </script>
 
@@ -368,7 +398,7 @@
                         replyPageNum = 1;  // 페이지 1로 초기화
                         getReplies("../../replies/" + articleNo + "/" + replyPageNum); // 댓글 목록 호출
                         replyTextObj.val("");     // 작성자 입력창 공백처리
-                        replyWriterObj.val("");   // 댓글 입력창 공백처리
+                        //replyWriterObj.val("");   // 댓글 입력창 공백처리
                     }
                 }
             });
