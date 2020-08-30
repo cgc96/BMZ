@@ -81,10 +81,16 @@
 					<li><a href="./busanjin${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="idx">
-					<li <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ' ' }"/>>
-						<%-- <a href="./listPaging?page=${idx}">${idx}</a>--%>
-						<a href="./busanjin${pageMaker.makeQuery(idx)}">${idx}</a>
-					</li>					
+					<c:if test = "${pageMaker.criteria.page == idx}">
+					  <li class= "page-item active">
+							<a class="page-link" href="./busanjin${pageMaker.makeQuery(idx)}">${idx}</a>
+						</li>
+					</c:if>
+					<c:if test = "${pageMaker.criteria.page != idx}">
+					  <li class= "page-item">
+							<a class="page-link" href="./busanjin${pageMaker.makeQuery(idx)}">${idx}</a>
+						</li>
+					</c:if>
 				</c:forEach>
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					<%--<li><a href="./listPaging?page=${pageMaker.endPage + 1}">다음</a></li> --%>

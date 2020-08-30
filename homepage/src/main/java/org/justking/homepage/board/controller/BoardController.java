@@ -66,25 +66,7 @@ public class BoardController {
 		return "redirect:/board/listPaging";
 	}
 	
-//	//��� ������ �̵�
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public String list(Model model) throws Exception{
-//		
-//		logger.info("list...");
-//		model.addAttribute("boards",boardService.listAll());
-//		
-//		return "/board/list";
-//	}
-	
-//	//����¡ ó��
-//	@RequestMapping(value = "/listCriteria", method = RequestMethod.GET)
-//	public String listCriteria(Model model, Criteria criteria) throws Exception{
-//		
-//		logger.info("listCriteria...");
-//		model.addAttribute("boards",boardService.listCriteria(criteria));
-//		return "/board/list_criteria";
-//	}	
-	
+	/*
 	//������ �Խ��� ������
 	@RequestMapping(value = "/geumjeong", method = RequestMethod.GET)
 	public String geumjeong(Model model, Criteria criteria) throws Exception{
@@ -148,6 +130,7 @@ public class BoardController {
 		
 		return "/board/hot_list";
 	}	
+	*/
 	
 //	//��ȸ ������ �̵�
 //	@RequestMapping(value = "/read", method = RequestMethod.GET)

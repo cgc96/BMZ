@@ -21,7 +21,7 @@ public interface BoardService {
 	
 	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
 	
-	int countArticles(Criteria criteria) throws Exception;
+	int countArticles(String gu) throws Exception;
 	
 	void recommend(Integer articleNo) throws Exception;
 	

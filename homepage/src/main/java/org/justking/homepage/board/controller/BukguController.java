@@ -28,8 +28,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		this.boardService = boardService;
 	}
 	
-
-	// 게시물 비추천 관련 메소드
 	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
 	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.nonrecommend(articleNo);
@@ -37,7 +35,8 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 
 		return "redirect:/Gu/bukgu/bukgu";
 	}
-	// 게시물 추천 관련 메소드
+
+	
 	@RequestMapping(value = "/recommend", method = {RequestMethod.GET, RequestMethod.POST})
 	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.recommend(articleNo);
@@ -46,14 +45,14 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		return "redirect:/Gu/bukgu/bukgu";
 	}
-	//등록 페이지 이동
+
+	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String writeGET() {
 		logger.info("wrtie GET...");
 		return "/Gu/bukgu/write";
 	}
 	
-	//등록 처리
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePOST(BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -64,35 +63,16 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		return "redirect:/Gu/bukgu/bukgu";
 	}
-	
-//	//목록 페이지 이동
-//	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-//	public String list(Model model) throws Exception{
-//		
-//		logger.info("list...");
-//		model.addAttribute("boards",boardService.listAll());
-//		
-//		return "/board/list";
-//	}
-	
-//	//페이징 처리
-//	@RequestMapping(value = "/listCriteria", method = RequestMethod.GET)
-//	public String listCriteria(Model model, Criteria criteria) throws Exception{
-//		
-//		logger.info("listCriteria...");
-//		model.addAttribute("boards",boardService.listCriteria(criteria));
-//		return "/board/list_criteria";
-//	}	
-	
-	//강서구 게시판 페이지
+
+
 	@RequestMapping(value = "/bukgu", method = RequestMethod.GET)
-	public String geumjeong(Model model, Criteria criteria) throws Exception{
+	public String bukgu(Model model, Criteria criteria) throws Exception{
 		
 		logger.info("bukgu...");
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles(criteria));
+		pageMaker.setTotalCount(boardService.countArticles("bukgu"));
 		
 		model.addAttribute("boards",boardService.bukgulistCriteria(criteria));
 		model.addAttribute("pageMaker",pageMaker);
@@ -101,8 +81,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	}	
 	
 
-
-	//조회 페이지 이동
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(@RequestParam("articleNo") int articleNo, 
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -113,7 +91,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "/Gu/bukgu/read";
 	}
 
-	//수정 페이지 이동
+
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyGET(@RequestParam("articleNo") int articleNo,
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -123,8 +101,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		return "/Gu/bukgu/modify";
 	}
-	
-	//수정 처리
+
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardDTO board, Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -136,8 +113,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		return "redirect:/Gu/bukgu/bukgu";
 	}
-	
-	//삭제 처리
+
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("articleNo") int articleNo, 
 			Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{

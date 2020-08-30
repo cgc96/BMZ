@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.justking.homepage.commons.paging.Criteria;
 import org.springframework.stereotype.Repository;
@@ -41,12 +42,6 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.delete(NAMESPACE + ".delete",articleNo);
 
 	}
-
-//	@Override
-//	public List<BoardDTO> listAll() throws Exception {
-//		return 	sqlSession.selectList(NAMESPACE + ".listAll");
-//
-//	}
 
 	@Override
 	public void updateViewCnt(Integer articleNo) throws Exception {
@@ -156,8 +151,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public int countArticles(Criteria criteria) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".countArticles",criteria);
+	public int countArticles(String gu) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countArticles", gu);
 	}
 
 	@Override

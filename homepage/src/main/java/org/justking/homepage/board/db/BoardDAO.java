@@ -6,7 +6,7 @@ import org.justking.homepage.commons.paging.Criteria;
 
 public interface BoardDAO {
 	
-	//°Ô½Ã±Û ÀÛ¼º
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½
 	void create(BoardDTO board) throws Exception;
 	
 	BoardDTO read(Integer articleNo) throws Exception;
@@ -15,29 +15,29 @@ public interface BoardDAO {
 	
 	void delete(Integer articleNo) throws Exception;
 	
-//	//°Ô½Ã¹° ¸ñ·Ï Á¶È¸
+//	//ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 //	List<BoardDTO> listAll() throws Exception;
 //	
-	//°Ô½Ã±Û Á¶È¸ up
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸ up
 	void updateViewCnt(Integer articleNo) throws Exception;
 	
-	//ÆäÀÌÂ¡ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
 	
-	//ÆäÀÌÂ¡ Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
 		
-	// ÀüÃ¼ °Ô½Ã±Û °³¼ö
-	int countArticles(Criteria criteria) throws Exception;
+	// ï¿½ï¿½Ã¼ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int countArticles(String gu) throws Exception;
 	
-	// °Ô½Ã±Û ÁÁ¾Æ¿ä 
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ 
 	void recommend(Integer articleNo) throws Exception;
 	
 	void nonrecommend(Integer articleNo) throws Exception;
 	
 	void hotcreate(BoardDTO board) throws Exception;
 
-	//±ÝÁ¤±¸ °Ô½ÃÆÇ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½
 	List<BoardDTO> geumjeonglistCriteria(Criteria criteria) throws Exception;
 	
 	void create1(BoardDTO board) throws Exception;
