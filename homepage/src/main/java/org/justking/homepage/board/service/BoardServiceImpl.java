@@ -57,11 +57,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception {
-		return boardDAO.hotlistCriteria(criteria);
-	}
-
-	@Override
 	public int countArticles(String gu) throws Exception {
 		return boardDAO.countArticles(gu);
 	}
@@ -76,11 +71,6 @@ public class BoardServiceImpl implements BoardService {
 	public void nonrecommend(Integer articleNo) throws Exception {
 		boardDAO.nonrecommend(articleNo);
 		
-	}
-
-	@Override
-	public void hotcreate(BoardDTO board) throws Exception {
-		boardDAO.hotcreate(board);
 	}
 
 	@Override

@@ -41,7 +41,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.recommend(articleNo);
 		redirectAttributes.addFlashAttribute("msg","liSuccess");
-		boardService.hotcreate(board);
 		
 		return "redirect:/Gu/bukgu/bukgu";
 	}

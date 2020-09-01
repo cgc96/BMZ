@@ -168,16 +168,6 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".hotlistPaging", criteria);
-	}
-
-	@Override
-	public void hotcreate(BoardDTO board) throws Exception {
-		sqlSession.insert(NAMESPACE +".hotcreate", board);
-	}
-	
-	@Override
 	public void create1(BoardDTO board) throws Exception {
 		sqlSession.insert(NAMESPACE + ".1create", board);
 	}
