@@ -19,8 +19,6 @@ public interface BoardDAO {
 	
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
 	
-	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
-
 	int countArticles(String gu) throws Exception;
 	
 	void recommend(Integer articleNo) throws Exception;

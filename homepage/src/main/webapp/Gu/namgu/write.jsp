@@ -86,7 +86,7 @@
 </script>
 
  <div class="col-lg-12">
-      <form role="form" id ="writeForm" method="post" action ="../bukgu/write">
+      <form role="form" id ="writeForm" method="post" action ="../namgu/write">
          <div class="box box-primary">
             <div class="box-header with-border">
                <h3 class="box-title"> 게시글작성</h3>
