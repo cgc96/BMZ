@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/org/justking/homepage/board/controller/BoardController.java=UTF-8
+encoding//src/main/java/org/justking/homepage/board/controller/BusanjinController.java=UTF-8
+encoding//src/main/java/org/justking/homepage/board/db/BoardDAO.java=UTF-8
 encoding//src/main/java/org/justking/homepage/member/controller/MemberController.java=UTF-8
 encoding//src/main/java/org/justking/homepage/member/service/MemberServiceImpl.java=UTF-8
 encoding//src/main/webapp/Gu/donggu/read.jsp=UTF-8

@@ -14,6 +14,7 @@ public interface BoardDAO {
 	
 	void delete(Integer articleNo) throws Exception;
 	
+
 	void updateViewCnt(Integer articleNo) throws Exception;
 	
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
@@ -25,8 +26,6 @@ public interface BoardDAO {
 	void recommend(Integer articleNo) throws Exception;
 	
 	void nonrecommend(Integer articleNo) throws Exception;
-	
-	void hotcreate(BoardDTO board) throws Exception;
 
 	List<BoardDTO> geumjeonglistCriteria(Criteria criteria) throws Exception;
 	

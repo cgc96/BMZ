@@ -22,6 +22,7 @@
 		<property name="password" value="jmtbusan1!" />
 	</bean>
 
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:util/SqlMapConfig.xml" />
@@ -42,6 +43,5 @@
 
 	<!-- 트랜잭션을 처리할 객체를 설정 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
 	
 </beans>

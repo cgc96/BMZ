@@ -33,7 +33,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	}
 	
 
-	// �Խù� ����õ ���� �޼ҵ�
 	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
 	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.nonrecommend(articleNo);
@@ -41,12 +40,10 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 
 		return "redirect:/Gu/yeongdo/yeongdo";
 	}
-	// �Խù� ��õ ���� �޼ҵ�
 	@RequestMapping(value = "/recommend", method = {RequestMethod.GET, RequestMethod.POST})
 	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.recommend(articleNo);
 		redirectAttributes.addFlashAttribute("msg","liSuccess");
-		boardService.hotcreate(board);
 		
 		return "redirect:/Gu/yeongdo/yeongdo";
 	}
@@ -69,7 +66,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "/Gu/yeongdo/write";
 	}
 	
-	//��� ó��
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePOST(BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -96,9 +92,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "/Gu/yeongdo/yeongdo";
 	}	
 	
-
-
-	//��ȸ ������ �̵�
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(@RequestParam("articleNo") int articleNo, 
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -109,7 +102,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "/Gu/yeongdo/read";
 	}
 
-	//���� ������ �̵�
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyGET(@RequestParam("articleNo") int articleNo,
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -120,7 +112,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "/Gu/yeongdo/modify";
 	}
 	
-	//���� ó��
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardDTO board, Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -133,7 +124,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		return "redirect:/Gu/yeongdo/yeongdo";
 	}
 	
-	//���� ó��
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("articleNo") int articleNo, 
 			Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{

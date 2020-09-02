@@ -13,7 +13,26 @@
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
-
+<style>
+	.area {
+	    position: absolute;
+	    background: #fff;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	    font-size: 12px;
+	    top: -5px;
+	    left: 15px;
+	    padding:2px;
+	}
+	
+	.info {
+	    font-size: 12px;
+	    padding: 5px;
+	}
+	.info .title {
+	    font-weight: bold;
+	}
+</style>
 </head>
 
 <body>
@@ -5254,8 +5273,7 @@ var mapContainer = document.getElementById('map2'), // 지도를 표시할 div
 var map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
     infowindow = new kakao.maps.InfoWindow({removable: true});
-
-// 지도에 영역데이터를 폴리곤으로 표시합니다 
+    
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
@@ -5281,7 +5299,8 @@ function displayArea(area) {
 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
-//        customOverlay.setMap(map);
+        customOverlay.setPosition(mouseEvent.latLng); 
+        customOverlay.setMap(map);
     });
 
     // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
@@ -5385,5 +5404,4 @@ function displayArea(area) {
 }
 </script>
  
-
 
