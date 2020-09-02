@@ -22,7 +22,7 @@
             String sql2 = "select a.article_no, a.gu, a.likes from article a, (select gu, MAX(likes) likes from article group by gu) b where a.likes=b.likes AND a.gu = b.gu group by gu";
             
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://jmtbusan.com/rnrcjf00", "rnrcjf00", "jmtbusan1!");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             ResultSet rs2 = stmt.executeQuery(sql2);
