@@ -5,6 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import = "org.justking.homepage.member.db.MemberDTO" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,13 +15,8 @@
 
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script>
-	$(function(){
-		$("#writeBtn").click(function(){
-			location.href='../haeundae/write';
-		})
-	})
-</script>
+
+
 <script>
 	var result ="$msg";
 	if(result == "regSuccess") {
@@ -101,9 +98,20 @@
        </div>
     <div class="box-footer">
        <div class="pull-right">
-           <button type="button" class="btn btn-success btn-flat" id="writeBtn">
-               <i class="fa fa-edit"></i> 글쓰기
-           </button>
+           <form action = "../haeundae/write" method = "Get">
+      			   <%
+                   HttpSession session_ = request.getSession(false);
+      			   if(session_ != null){
+      				  MemberDTO member = (MemberDTO)session_.getAttribute("member");%>
+             	   		<input type = "hidden" name = "id" value =  <%= member.getId() %> >
+                	<%}else{%>
+             	 	  <input type = "hidden" name = "id" value = "null" >
+               		<%}%>
+                  
+	           <button type="submit" class="btn btn-success btn-flat">
+	        		<i class="fa fa-edit"></i> 글쓰기
+	           </button>
+       		</form>
        </div>
     
   	</div>

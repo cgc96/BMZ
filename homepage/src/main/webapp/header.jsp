@@ -13,26 +13,26 @@
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
-    <style>
-.area {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #888;
-    border-radius: 3px;
-    font-size: 12px;
-    top: -5px;
-    left: 15px;
-    padding:2px;
-}
-
-.info {
-    font-size: 12px;
-    padding: 5px;
-}
-.info .title {
-    font-weight: bold;
-}
-</style>a
+<style>
+	.area {
+	    position: absolute;
+	    background: #fff;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	    font-size: 12px;
+	    top: -5px;
+	    left: 15px;
+	    padding:2px;
+	}
+	
+	.info {
+	    font-size: 12px;
+	    padding: 5px;
+	}
+	.info .title {
+	    font-weight: bold;
+	}
+</style>
 </head>
 
 <body>
@@ -5404,5 +5404,4 @@ function displayArea(area) {
 }
 </script>
  
-
 
