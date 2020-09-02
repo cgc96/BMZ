@@ -5273,8 +5273,7 @@ var mapContainer = document.getElementById('map2'), // 지도를 표시할 div
 var map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
     infowindow = new kakao.maps.InfoWindow({removable: true});
-
-// 지도에 영역데이터를 폴리곤으로 표시합니다 
+    
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
