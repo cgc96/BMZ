@@ -4,11 +4,11 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
-	private int totalCount;	// 전체 게시글의 갯수
-	private int startPage;	//시작 페이지 번호
-	private int endPage;	// 끝 페이지 번호
-	private boolean prev;	// 이전 링크
-	private boolean next;	// 다음 링크
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
 	
 	private int displayPageNum = 10;
 	
@@ -20,6 +20,7 @@ public class PageMaker {
 	
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+		System.out.println("totalCount : "+this.totalCount);
 		calcData();
 	}
 	

@@ -30,7 +30,7 @@ public class BoardController {
 	}
 	
 
-	// �Խù� ����õ ���� �޼ҵ�
+	// 占쌉시뱄옙 占쏙옙占쏙옙천 占쏙옙占쏙옙 占쌨소듸옙
 	@RequestMapping(value = "/nonrecommend", method = {RequestMethod.GET, RequestMethod.POST})
 	public String nonrecommend(@RequestParam int articleNo, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.nonrecommend(articleNo);
@@ -43,8 +43,7 @@ public class BoardController {
 	public String recommend(@RequestParam int articleNo, BoardDTO board, RedirectAttributes redirectAttributes) throws Exception{
 		boardService.recommend(articleNo);
 		redirectAttributes.addFlashAttribute("msg","liSuccess");
-		boardService.hotcreate(board);
-		
+
 		return "redirect:/board/listPaging";
 	}
 
@@ -66,26 +65,8 @@ public class BoardController {
 		return "redirect:/board/listPaging";
 	}
 	
-//	//��� ������ �̵�
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public String list(Model model) throws Exception{
-//		
-//		logger.info("list...");
-//		model.addAttribute("boards",boardService.listAll());
-//		
-//		return "/board/list";
-//	}
-	
-//	//����¡ ó��
-//	@RequestMapping(value = "/listCriteria", method = RequestMethod.GET)
-//	public String listCriteria(Model model, Criteria criteria) throws Exception{
-//		
-//		logger.info("listCriteria...");
-//		model.addAttribute("boards",boardService.listCriteria(criteria));
-//		return "/board/list_criteria";
-//	}	
-	
-	//������ �Խ��� ������
+	/*
+	//占쏙옙占쏙옙占쏙옙 占쌉쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	@RequestMapping(value = "/geumjeong", method = RequestMethod.GET)
 	public String geumjeong(Model model, Criteria criteria) throws Exception{
 		
@@ -101,7 +82,7 @@ public class BoardController {
 		return "/Gu/geumjeong";
 	}	
 	
-	//���� �Խ��� ������
+	//占쏙옙占쏙옙 占쌉쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	@RequestMapping(value = "/namgu", method = RequestMethod.GET)
 	public String namgu(Model model, Criteria criteria) throws Exception{
 		
@@ -117,7 +98,7 @@ public class BoardController {
 		return "/Gu/namgu";
 	}	
 	
-	//������ ��ȣ ���, ���������
+	//占쏙옙占쏙옙占쏙옙 占쏙옙호 占쏙옙占�, 占쏙옙占쏙옙占쏙옙占쏙옙占�
 	@RequestMapping(value = "/listPaging", method = RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception{
 		
@@ -133,7 +114,7 @@ public class BoardController {
 		return "/board/list_paging";
 	}	
 	
-	//������ ��ȣ ���, �ָ��������
+	//占쏙옙占쏙옙占쏙옙 占쏙옙호 占쏙옙占�, 占쌍몌옙占쏙옙占쏙옙占쏙옙占�
 	@RequestMapping(value = "/hot_listPaging", method = RequestMethod.GET)
 	public String hot_listPaging(Model model, Criteria criteria) throws Exception{
 		
@@ -148,8 +129,9 @@ public class BoardController {
 		
 		return "/board/hot_list";
 	}	
+	*/
 	
-//	//��ȸ ������ �̵�
+//	//占쏙옙회 占쏙옙占쏙옙占쏙옙 占싱듸옙
 //	@RequestMapping(value = "/read", method = RequestMethod.GET)
 //	public String read(@RequestParam("articleNo") int articleNo, 
 //			Model model) throws Exception{
@@ -160,7 +142,7 @@ public class BoardController {
 //		return "/board/read";
 //	}
 
-	//��ȸ ������ �̵�
+	//占쏙옙회 占쏙옙占쏙옙占쏙옙 占싱듸옙
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(@RequestParam("articleNo") int articleNo, 
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -171,7 +153,7 @@ public class BoardController {
 		return "/board/read";
 	}
 
-	//���� ������ �̵�
+	//占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싱듸옙
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyGET(@RequestParam("articleNo") int articleNo,
 			@ModelAttribute("criteria") Criteria criteria, Model model) throws Exception{
@@ -182,7 +164,7 @@ public class BoardController {
 		return "/board/modify";
 	}
 	
-	//���� ó��
+	//占쏙옙占쏙옙 처占쏙옙
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(BoardDTO board, Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{
 		
@@ -195,7 +177,7 @@ public class BoardController {
 		return "redirect:/board/listPaging";
 	}
 	
-	//���� ó��
+	//占쏙옙占쏙옙 처占쏙옙
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("articleNo") int articleNo, 
 			Criteria criteria, RedirectAttributes redirectAttributes) throws Exception{

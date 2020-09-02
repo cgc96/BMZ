@@ -19,15 +19,11 @@ public interface BoardService {
 
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
 	
-	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
-	
-	int countArticles(Criteria criteria) throws Exception;
+	int countArticles(String gu) throws Exception;
 	
 	void recommend(Integer articleNo) throws Exception;
 	
 	void nonrecommend(Integer articleNo) throws Exception;
-	
-	void hotcreate(BoardDTO board) throws Exception;
 
 	void create1(BoardDTO board) throws Exception;
 	

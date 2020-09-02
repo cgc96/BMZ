@@ -443,7 +443,7 @@
 		<![CDATA[
 		SELECT COUNT(article_no)
 		FROM article
-		WHERE article_no > 0
+		WHERE article_no > 0 and gu = #{gu}
 		]]>
 	</select>
 	
