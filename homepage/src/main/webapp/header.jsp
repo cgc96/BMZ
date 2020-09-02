@@ -14,6 +14,27 @@
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
 
+<style>
+	.area {
+	    position: absolute;
+	    background: #fff;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	    font-size: 12px;
+	    top: -5px;
+	    left: 15px;
+	    padding:2px;
+	}
+	
+	.info {
+	    font-size: 12px;
+	    padding: 5px;
+	}
+	.info .title {
+	    font-weight: bold;
+	}
+</style>
+
 </head>
 
 <body>
@@ -22,7 +43,7 @@
             String sql2 = "select a.article_no, a.gu, a.likes from article a, (select gu, MAX(likes) likes from article group by gu) b where a.likes=b.likes AND a.gu = b.gu group by gu";
             
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://jmtbusan.com/rnrcjf00", "rnrcjf00", "jmtbusan1!");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             ResultSet rs2 = stmt.executeQuery(sql2);
@@ -5281,7 +5302,8 @@ function displayArea(area) {
 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
-//        customOverlay.setMap(map);
+        customOverlay.setPosition(mouseEvent.latLng); 
+        customOverlay.setMap(map);
     });
 
     // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 

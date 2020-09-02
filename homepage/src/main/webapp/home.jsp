@@ -23,7 +23,7 @@
          <% 
             String sql = "SELECT a.article_no, a.title, a.viewcnt, a.gu FROM article a WHERE 5 > (SELECT count(b.title) FROM article b WHERE a.gu = b.gu and a.regdate < b.regdate) ORDER BY a.regdate DESC";
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homepage", "root", "1234");
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://jmtbusan.com/rnrcjf00", "rnrcjf00", "jmtbusan1!");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
          %>
