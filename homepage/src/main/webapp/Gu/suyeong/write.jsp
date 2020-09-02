@@ -86,7 +86,7 @@
 </script>
 
  <div class="col-lg-12">
-      <form role="form" id ="writeForm" method="post" action ="../bukgu/write">
+      <form role="form" id ="writeForm" method="post" action ="../suyeong/write">
          <div class="box box-primary">
             <div class="box-header with-border">
                <h3 class="box-title"> 게시글작성</h3>
@@ -117,7 +117,8 @@
             var mapContainer = document.getElementById('mapp'), // 지도를 표시할 div 
                 mapOption = {
                     center: new kakao.maps.LatLng(35.235372, 129.013856), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
+                    level: 3 // 지도의 확대 레벨-+
+                    
                 };  
             
             // 지도를 생성합니다    
