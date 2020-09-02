@@ -14,7 +14,7 @@
 <head>
 <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.css">
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.j"src/main/webapp/Gu/bukgu/write.jsp"s"></script>
 <script>
    $(function(){
       $("#listbtn").click(function(){
