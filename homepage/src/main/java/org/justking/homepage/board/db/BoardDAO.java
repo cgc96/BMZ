@@ -6,7 +6,6 @@ import org.justking.homepage.commons.paging.Criteria;
 
 public interface BoardDAO {
 	
-	//占쌉시깍옙 占쌜쇽옙
 	void create(BoardDTO board) throws Exception;
 	
 	BoardDTO read(Integer articleNo) throws Exception;
@@ -15,24 +14,19 @@ public interface BoardDAO {
 	
 	void delete(Integer articleNo) throws Exception;
 	
-//	//占쌉시뱄옙 占쏙옙占� 占쏙옙회
-//	List<BoardDTO> listAll() throws Exception;
-//	
-	//占쌉시깍옙 占쏙옙회 up
+
 	void updateViewCnt(Integer articleNo) throws Exception;
 	
-	//占쏙옙占쏙옙징 처占쏙옙
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
+	
+	List<BoardDTO> hotlistCriteria(Criteria criteria) throws Exception;
 
-	// 占쏙옙체 占쌉시깍옙 占쏙옙占쏙옙
 	int countArticles(String gu) throws Exception;
 	
-	// 占쌉시깍옙 占쏙옙占싣울옙 
 	void recommend(Integer articleNo) throws Exception;
 	
 	void nonrecommend(Integer articleNo) throws Exception;
 
-	//占쏙옙占쏙옙占쏙옙 占쌉쏙옙占쏙옙
 	List<BoardDTO> geumjeonglistCriteria(Criteria criteria) throws Exception;
 	
 	void create1(BoardDTO board) throws Exception;
