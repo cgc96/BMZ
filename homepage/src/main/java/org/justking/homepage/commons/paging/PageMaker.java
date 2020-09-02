@@ -20,7 +20,6 @@ public class PageMaker {
 	
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		System.out.println("totalCount : "+this.totalCount);
 		calcData();
 	}
 	
