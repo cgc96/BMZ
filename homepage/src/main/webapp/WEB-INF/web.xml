@@ -43,6 +43,7 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 	
 	<!-- POST 방식 전송에서의 파라미터 인코딩 설정 -->
 	<filter>

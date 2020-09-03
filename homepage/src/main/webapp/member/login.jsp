@@ -8,7 +8,7 @@
 </head>
 <body>
 <script>
-	self.location="/homepage/home.jsp";
+	self.location="/homepage/";
 </script>
 </body>
 </html>

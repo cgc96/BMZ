@@ -1,6 +1,10 @@
 package org.justking.homepage.board.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.justking.homepage.board.db.BoardDTO;
 import org.justking.homepage.board.service.BoardService;
@@ -42,8 +46,21 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		return "redirect:/Gu/seogu/seogu";
 	}
+
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String writeGET() {
+	public String writeGET(String id, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		System.out.println(id);
+		if(id.equals("null")) {
+			out.println("<script>");
+			out.println("alert('로그인 후 글작성 가능합니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return "redirect:/Gu/seogu/seogu";
+		}
+		
 		logger.info("wrtie GET...");
 		return "/Gu/seogu/write";
 	}

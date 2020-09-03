@@ -13,7 +13,26 @@
 <html lang="ko">
 <head>
 <link rel="stylesheet" href="/homepage/resources/bootstrap/css/bootstrap.css">
-
+<style>
+	.area {
+	    position: absolute;
+	    background: #fff;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	    font-size: 12px;
+	    top: -5px;
+	    left: 15px;
+	    padding:2px;
+	}
+	
+	.info {
+	    font-size: 12px;
+	    padding: 5px;
+	}
+	.info .title {
+	    font-weight: bold;
+	}
+</style>
 </head>
 
 <body>
@@ -22,13 +41,13 @@
             String sql2 = "select a.article_no, a.gu, a.likes from article a, (select gu, MAX(likes) likes from article group by gu) b where a.likes=b.likes AND a.gu = b.gu group by gu";
             
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://jmtbusan.com/rnrcjf00", "rnrcjf00", "jmtbusan1!");
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://jmtbusan.com/rnrcjf00", "rnrcjf00", "jmtbusan1!");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             ResultSet rs2 = stmt.executeQuery(sql2);
          %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/homepage/home.jsp">부산 맛집 지도</a>
+  <a class="navbar-brand" href="/homepage/">부산 맛집 지도</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -5254,8 +5273,7 @@ var mapContainer = document.getElementById('map2'), // 지도를 표시할 div
 var map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
     infowindow = new kakao.maps.InfoWindow({removable: true});
-
-// 지도에 영역데이터를 폴리곤으로 표시합니다 
+    
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
@@ -5281,7 +5299,8 @@ function displayArea(area) {
 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
-//        customOverlay.setMap(map);
+        customOverlay.setPosition(mouseEvent.latLng); 
+        customOverlay.setMap(map);
     });
 
     // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
@@ -5385,5 +5404,4 @@ function displayArea(area) {
 }
 </script>
  
-
 
