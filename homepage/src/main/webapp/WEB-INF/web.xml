@@ -30,6 +30,16 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+      <servlet-name>HomeController</servlet-name>
+      <servlet-class>org.justking.homepage.HomeController</servlet-class>
+   </servlet>
+      
+   <servlet-mapping>sss
+      <servlet-name>HomeController</servlet-name>
+      <url-pattern>/servlet</url-pattern>
+   </servlet-mapping>
+   
 	<!-- 한글 인코딩 설정 -->
 	<filter>
 		<filter-name>encoding</filter-name>
