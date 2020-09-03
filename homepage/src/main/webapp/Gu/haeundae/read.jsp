@@ -72,6 +72,11 @@
     <p class="card-text">${board.content} </p>
   </div>
   <p></p><p></p><p></p>
+  <%--업로드 파일 정보 영역--%>
+  <div class="box-footer uploadFiles">
+      <ul class="mailbox-attachments clearfix uploadedFileList"></ul>
+  </div>
+  <p></p><p></p><p></p>
   
   <div style = "float:right;">
   &nbsp;&nbsp;
@@ -200,6 +205,21 @@
 
 </div>
 
+<script id="fileTemplate" type="text/x-handlebars-template">
+    <li data-src="{{fullName}}">
+        <span class="mailbox-attachment-icon has-img">
+            <img src="{{imgSrc}}" alt="Attachment">
+        </span>
+        <div class="mailbox-attachment-info">
+            <a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+                <i class="fa fa-paperclip"></i> {{originalFileName}}
+            </a>
+        </div>
+    </li>
+</script>
+<%--게시글 첨부파일 파일 템플릿--%>
+<script type="text/javascript" src="../../resources/dist/js/article_file_upload.js"></script>
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ff585150b05b1bca64a36410ece9e8e&libraries=services"></script>
 			<script>
@@ -294,7 +314,10 @@
             minutes < 10 ? minutes = '0' + minutes : minutes;
             return year + "-" + month + "-" + date + " " + hours + ":" + minutes;
         });
-        
+
+        // 첨부파일 목록
+        getFiles(articleNo);
+
         //댓글 목록 함수 호출
         getReplies("../../replies/" + articleNo + "/" + replyPageNum);
         
@@ -440,27 +463,39 @@
         
         // 수정버튼 클릭시
         $(".modBtn").on("click", function () {
-            formObj.attr("action", "../bukgu/modify");
+            formObj.attr("action", "../haeundae/modify");
             formObj.attr("method", "get");
             formObj.submit();
         });
         
         // 삭제 버튼 클릭시
         $(".delBtn").on("click", function () {
-            formObj.attr("action", "../bukgu/remove");
+
+        	var arr = [];
+        	$(".uploadedFileList li").each(function(){
+        		arr.push($(this).attr("data-src"));
+        	});
+        	
+        	if(arr.length > 0) {
+        		$.post("../../article/file/deleteAll",{files:arr}, function(){
+        			
+        		});
+        	}
+        	
+        	formObj.attr("action", "../haeundae/remove");
             formObj.submit();
         });
         
         // 목록 버튼 클릭시
         $(".listBtn").on("click", function () {
-        	formObj.attr("action", "../bukgu/bukgu")
+        	formObj.attr("action", "../haeundae/haeundae")
         	formObj.attr("method", "get");
 
 			formObj.submit();            
         });
 
         $(".btnRecommend").on("click",function(){
-        	formObj.attr("action","../bukgu/recommend")
+        	formObj.attr("action","../haeundae/recommend")
 	       	formObj.attr("method", "get");
 
         	alert("해당 게시물을 추천하였습니다.");
@@ -469,7 +504,7 @@
 
         });
         $(".btnNonRecommend").on("click",function(){
-        	formObj.attr("action","../bukgu/nonrecommend")
+        	formObj.attr("action","../haeundae/nonrecommend")
 	       	formObj.attr("method", "get");
 
         	alert("해당 게시물을 비추천하였습니다.");
