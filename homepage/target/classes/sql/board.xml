@@ -13,98 +13,98 @@
 	
 	<!-- 금정구 게시판 글 작성 -->
 	<insert id="1create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'geumjeong')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes, map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'geumjeong', #{fileCnt})
 	</insert>
 
 	<!-- 북구 게시판 글 작성 -->
 	<insert id="2create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'bukgu')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'bukgu', #{fileCnt})
 	</insert>
 	
 	<!-- 남구 게시판 글 작성 -->
 	<insert id="3create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'namgu')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'namgu', #{fileCnt})
 	</insert>
 	
 	<!-- 부산진구 게시판 글 작성 -->
 	<insert id="4create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'busanjin')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'busanjin', #{fileCnt})
 	</insert>
 	
 	<!-- 동구 게시판 글 작성 -->
 	<insert id="5create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'donggu')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'donggu', #{fileCnt})
 	</insert>
 	
 	<!-- 강서구 게시판 글 작성 -->
 	<insert id="6create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'gangseo')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'gangseo', #{fileCnt})
 	</insert>
 	
 	<!-- 동래구 게시판 글 작성 -->
 	<insert id="7create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'dongnae')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'dongnae', #{fileCnt})
 	</insert>
 	
 	<!-- 기장 게시판 글 작성 -->
 	<insert id="8create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'gijang')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'gijang', #{fileCnt})
 	</insert>
 	
 	<!-- 중구 게시판 글 작성 -->
 	<insert id="9create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'junggu')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'junggu', #{fileCnt})
 	</insert>
 	
 	<!-- 사하구 게시판 글 작성 -->
 	<insert id="10create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'saha')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'saha', #{fileCnt})
 	</insert>
 	
 	<!-- 사상 게시판 글 작성 -->
 	<insert id="11create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'sasang')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'sasang', #{fileCnt})
 	</insert>
 	
 	<!-- 서구 게시판 글 작성 -->
 	<insert id="12create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'seogu')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'seogu', #{fileCnt})
 	</insert>
 	
 	<!-- 수영 게시판 글 작성 -->
 	<insert id="13create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'suyeong')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'suyeong', #{fileCnt})
 	</insert>
 	
 	<!-- 영도 게시판 글 작성 -->
 	<insert id="14create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'yeongdo')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'yeongdo', #{fileCnt})
 	</insert>
 	
 	<!-- 해운대 게시판 글 작성 -->
 	<insert id="15create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'haeundae')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'haeundae', #{fileCnt})
 	</insert>
 	
 	<!-- 연제 게시판 글 작성 -->
 	<insert id="16create">
-		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu)
-		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'yeonje')
+		INSERT INTO article(article_no, title, content, writer, regdate, viewcnt, likes, dislikes,map, gu, file_cnt)
+		values(#{articleNo}, #{title}, #{content}, #{writer}, #{regDate}, #{viewCnt}, #{likes}, #{dislikes}, #{map}, 'yeonje', #{fileCnt})
 	</insert>
 	
 	<select id="read" resultMap="ArticleResultMap">

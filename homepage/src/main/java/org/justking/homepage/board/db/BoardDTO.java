@@ -1,6 +1,7 @@
 package org.justking.homepage.board.db;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class BoardDTO {
 	private Integer articleNo;
@@ -14,7 +15,28 @@ public class BoardDTO {
 	private String gu;
 	private String map;
 	
+	private String[] files;
+	private int fileCnt;
+	
 	private int comt_count;
+	
+	public int getFileCnt() {
+		return fileCnt;
+	}
+
+	
+
+	public String[] getFiles() {
+		return files;
+	}
+	public void setFiles(String[] files) {
+		this.files = files;
+		setFileCnt(files.length);
+	}
+	
+	private void setFileCnt(int fileCnt) {
+		this.fileCnt = fileCnt;
+	}
 	
 	public Integer getArticleNo() {
 		return articleNo;
@@ -80,12 +102,6 @@ public class BoardDTO {
 		this.gu = gu;
 	}
 	
-	@Override
-	public String toString() {
-		return "BoardDTO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", likes=" + likes + ", dislikes=" + dislikes
-				+ ", gu=" + gu + ", map=" + map + ", comt_count=" + comt_count + "]";
-	}
 	public String getMap() {
 		return map;
 	}
@@ -93,5 +109,12 @@ public class BoardDTO {
 		this.map = map;
 	}
 	
+	@Override
+	public String toString() {
+		return "BoardDTO [articleNo=" + articleNo + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", likes=" + likes + ", dislikes=" + dislikes
+				+ ", gu=" + gu + ", map=" + map + ", files=" + Arrays.toString(files) + ", fileCnt=" + fileCnt
+				+ ", comt_count=" + comt_count + "]";
+	}
 	
 }

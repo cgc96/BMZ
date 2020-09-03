@@ -15,6 +15,16 @@
 <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.css">
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<style>
+    .fileDrop {
+        width: 100%;
+        height: 200px;
+        border: 2px dotted #0b58a2;
+    }
+</style>
+
 <script>
    $(function(){
       $("#listbtn").click(function(){
@@ -45,6 +55,9 @@
 				$("#title").val("").focus();
 				return false;
 			}
+			event.preventDefault();
+			var that = $(this);
+			filesSubmit(that);
 		});
 	})
 </script>
@@ -158,20 +171,60 @@
                    %>
                    <input class="form-control" name="writer" id="writer" readonly value = <%= member.getId() %> >
                </div>
+               <%-- 첨부파일 영역 추가 --%>
+            	<div class ="form-group">
+            		<div class="fileDrop">
+	            		<br/>
+	            		<br/>
+	            		<br/>
+	            		<br/>
+            		<p class="text-center"><i class ="fa fa-paperclip"></i> 첨부파일을 드래그해주세요.</p>
+            		</div>
+            	</div>
             </div>
-               
+            
+            <div class ="box-footer">
+            	<ul class="mailbox-attachments clearfix uploadedFileList"></ul>
+            </div>
             <div class="box-footer">
                <button type="button" class="btn btn-primary" id="listbtn"><i class="fa fa-list"></i> 목록</button>
                <div class="pull-right">
                  <button type="reset" class="btn btn-warning"><i class="fa fa-reply"></i> 초기화</button>
                   <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> 작성</button>
-            
-               </div>
-           </div>
+               
+            </div>
+               
+    
          </div>
       </form>
 </div>
+<script id="fileTemplate" type="text/x-handlebars-template">
+    <li>
+        <span class="mailbox-attachment-icon has-img">
+            <img src="{{imgSrc}}" alt="Attachment">
+        </span>
+        <div class="mailbox-attachment-info">
+            <a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+                <i class="fa fa-paperclip"></i> {{originalFileName}}
+            </a>
+            <a href="{{fullName}}" class="btn btn-default delBtn">
+                <i class="fa fa-fw fa-remove"></i>
+            </a>
+        </div>
+    </li>
+</script>
+<script type="text/javascript" src="../../resources/dist/js/article_file_upload.js"></script>
 
+<script>
+	
+	
+	// 파일 삭제 버튼 클릭 이벤트
+	$(document).on("click", ".delBtn", function (event) {
+		event.preventDefault();
+		var that = $(this);
+		deleteFileWrtPage(that);
+	});
+</script>
 </body>
 
 </html>

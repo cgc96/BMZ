@@ -11,17 +11,21 @@ import javax.inject.Inject;
 import org.justking.homepage.board.db.BoardDAO;
 import org.justking.homepage.board.db.BoardDTO;
 import org.justking.homepage.commons.paging.Criteria;
+import org.justking.homepage.upload.db.ArticleFileDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 	
 	private final BoardDAO boardDAO;
+	private final ArticleFileDAO articleFileDAO;
 	
 	@Inject
-	public BoardServiceImpl(BoardDAO boardDAO) {
+	public BoardServiceImpl(BoardDAO boardDAO, ArticleFileDAO articleFileDAO) {
+		this.articleFileDAO = articleFileDAO;
 		this.boardDAO = boardDAO;
 	}
 
+	@Transactional
 	@Override
 	public void create(BoardDTO board) throws Exception {
 		boardDAO.create(board);
@@ -40,16 +44,13 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.update(board);
 	}
 
+	@Transactional
 	@Override
 	public void delete(Integer articleNo) throws Exception {
+		articleFileDAO.deleteFiles(articleNo);
 		boardDAO.delete(articleNo);
 		
 	}
-
-//	@Override
-//	public List<BoardDTO> listAll() throws Exception {
-//		return boardDAO.listAll();
-//	}
 
 	@Override
 	public List<BoardDTO> listCriteria(Criteria criteria) throws Exception {
@@ -153,98 +154,220 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.yeonjelistCriteria(criteria);
 	}
 	
+	@Transactional
 	@Override
 	public void create1(BoardDTO board) throws Exception {
 		boardDAO.create1(board);
+		String[] files = board.getFiles();
+		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 		
 	}
 	
+	@Transactional
 	@Override
 	public void create6(BoardDTO board) throws Exception {
 		boardDAO.create6(board);
+		String[] files = board.getFiles();
+		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 		
 	}
 
+	@Transactional
 	@Override
 	public void create3(BoardDTO board) throws Exception {
 		boardDAO.create3(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create15(BoardDTO board) throws Exception {
 		boardDAO.create15(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create2(BoardDTO board) throws Exception {
+		
+		String[] files = board.getFiles();
+
 		boardDAO.create2(board);
+		if(files == null)
+			return;
+		
+		for(String fileName:files) {
+			articleFileDAO.addFile(fileName);
+
+		}
+			
 		
 	}
 	
+	@Transactional
 	@Override
 	public void create4(BoardDTO board) throws Exception {
 		boardDAO.create4(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files) 
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create5(BoardDTO board) throws Exception {
 		boardDAO.create5(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create7(BoardDTO board) throws Exception {
 		boardDAO.create7(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create8(BoardDTO board) throws Exception {
 		boardDAO.create8(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create9(BoardDTO board) throws Exception {
 		boardDAO.create9(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create10(BoardDTO board) throws Exception {
 		boardDAO.create10(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create11(BoardDTO board) throws Exception {
 		boardDAO.create11(board);
+		String[] files = board.getFiles();
+		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create12(BoardDTO board) throws Exception {
 		boardDAO.create12(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create13(BoardDTO board) throws Exception {
 		boardDAO.create13(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
-		
+	
+	
+	
+	@Transactional
 	@Override
 	public void create14(BoardDTO board) throws Exception {
 		boardDAO.create14(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 	
+	@Transactional
 	@Override
 	public void create16(BoardDTO board) throws Exception {
 		boardDAO.create16(board);
+		String[] files = board.getFiles();
 		
+		if(files == null)
+			return;
+		
+		for(String fileName:files)
+			articleFileDAO.addFile(fileName);
 	}
 }
