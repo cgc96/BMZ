@@ -28,6 +28,16 @@
  <jsp:include page = "../../header.jsp" /> 
 </head>
 
+<style>
+ul{
+	list-style:none;
+}
+li{
+	float: left;
+	margin-right: 50px;
+}
+</style>
+
 <body>
 
 
@@ -73,7 +83,7 @@
   </div>
   <p></p><p></p><p></p>
   <%--업로드 파일 정보 영역--%>
-  <div class="box-footer uploadFiles">
+  <div class="box-footer uploadFiles" >
       <ul class="mailbox-attachments clearfix uploadedFileList"></ul>
   </div>
   <p></p><p></p><p></p>

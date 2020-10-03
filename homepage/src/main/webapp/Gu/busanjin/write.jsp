@@ -454,7 +454,7 @@
 <script type="text/javascript" src="../../resources/dist/js/article_file_upload.js"></script>
 
 
-
+<script>
 	// 파일 삭제 버튼 클릭 이벤트
 	$(document).on("click", ".delBtn", function (event) {
 		event.preventDefault();

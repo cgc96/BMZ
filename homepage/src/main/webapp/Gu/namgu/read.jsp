@@ -26,6 +26,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
  <jsp:include page = "../../header.jsp" /> 
+<style>
+ul{
+	list-style:none;
+}
+li{
+	float: left;
+	margin-right: 50px;
+}
+</style>
 </head>
 
 <body>
