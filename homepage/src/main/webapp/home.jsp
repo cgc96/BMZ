@@ -39,7 +39,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/saha/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/saha/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -63,7 +63,7 @@
 	            	<td>${board.articleNo}</td>
 	            	<td>
 	            		
-	            		 <a href="./Gu/busanjin/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/busanjin/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 	
 	                 </td>
 	                <td>${board.viewCnt} </td>
@@ -87,7 +87,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/haeundae/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/haeundae/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -111,7 +111,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/donggu/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/donggu/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -134,7 +134,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/bukgu/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/bukgu/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -157,7 +157,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/haeundae/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/haeundae/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -180,7 +180,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/gangseo/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/gangseo/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>
@@ -203,7 +203,7 @@
 		         	 <tr>
 		            	<td>${board.articleNo}</td>
 		            	<td>
-		            		 <a href="./Gu/geumjeong/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+		            		 <a href="./Gu/geumjeong/read?&articleNo=${board.articleNo}">${board.title}</a>
 		                 </td>
 		                <td>${board.viewCnt} </td>
 		             </tr>
@@ -227,7 +227,7 @@
 		        <tr>
 	            	<td>${board.articleNo}</td>
 	            	<td>
-	            		 <a href="./Gu/gijang/read?${pageMaker.makeQuery(pageMaker.criteria.page)}&articleNo=${board.articleNo}">${board.title}</a>
+	            		 <a href="./Gu/gijang/read?&articleNo=${board.articleNo}">${board.title}</a>
 	                 </td>
 	                <td>${board.viewCnt} </td>
 	             </tr>

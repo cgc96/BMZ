@@ -447,6 +447,24 @@
 		]]>
 	</select>
 	
+	<select id="get5Articles" resultMap="ArticleResultMap">
+		<![CDATA[
+			SELECT a.article_no, 
+			a.title, 
+			a.content, 
+			a.writer, 
+			a.regdate,
+			a.viewcnt,
+			a.likes,
+			a.dislikes
+			FROM article a 
+			WHERE a.gu = #{gu} and
+			      5 > (SELECT count(b.title) 
+					   FROM article b 
+					   WHERE a.gu = b.gu and a.regdate < b.regdate) 
+		    ORDER BY a.regdate DESC
+		]]>
+	</select>
 	
 	<update id="updateViewCnt">
 		UPDATE article

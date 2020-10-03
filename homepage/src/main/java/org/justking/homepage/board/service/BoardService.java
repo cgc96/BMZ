@@ -19,6 +19,8 @@ public interface BoardService {
 
 	List<BoardDTO> listCriteria(Criteria criteria) throws Exception;
 	
+	List<BoardDTO> get5Articles(String gu) throws Exception;
+	
 	int countArticles(String gu) throws Exception;
 	
 	void recommend(Integer articleNo) throws Exception;

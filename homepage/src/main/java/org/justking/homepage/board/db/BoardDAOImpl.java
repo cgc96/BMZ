@@ -146,7 +146,6 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public List<BoardDTO> yeonjelistCriteria(Criteria criteria) throws Exception {
-		
 		return sqlSession.selectList(NAMESPACE + ".yeonje", criteria);
 	}
 	
@@ -261,6 +260,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public void create16(BoardDTO board) throws Exception {
 		sqlSession.insert(NAMESPACE + ".16create", board);
 		
+	}
+
+	@Override
+	public List<BoardDTO> get5Articles(String gu) throws Exception {
+		return sqlSession.selectList(NAMESPACE +".get5Articles",gu);
 	}
 	
 }
