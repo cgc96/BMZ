@@ -144,7 +144,7 @@ public class UploadFileUtils {
 		// 원본이미지를 메모리상에 로딩
 		BufferedImage originalImg = ImageIO.read(new File(uploadRootPath + datePath, fileName));
 		// 원본이미지를 축소
-		BufferedImage thumbnailImg = Scalr.resize(originalImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+		BufferedImage thumbnailImg = Scalr.resize(originalImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 200);
 		// 썸네일 파일명
 		String thumbnailImgName = "s_" + fileName;
 		// 썸네일 업로드 경로
