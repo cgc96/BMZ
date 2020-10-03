@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
 		this.articleFileDAO = articleFileDAO;
 		this.boardDAO = boardDAO;
 	}
-
+	
 	@Transactional
 	@Override
 	public void create(BoardDTO board) throws Exception {
@@ -369,5 +369,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		for(String fileName:files)
 			articleFileDAO.addFile(fileName);
+	}
+
+	@Override
+	public List<BoardDTO> get5Articles(String gu) throws Exception {
+		return boardDAO.get5Articles(gu);
 	}
 }

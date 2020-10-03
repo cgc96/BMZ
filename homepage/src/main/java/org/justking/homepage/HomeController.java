@@ -76,142 +76,139 @@ public class HomeController {
 	}
 
 	private void makeBusanjinBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("busanjin"));
-		
-		model.addAttribute("busanjin_boards",boardService.busanjinlistCriteria(criteria));
-		model.addAttribute("busanjin_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("busanjin"));
+//		
+//		model.addAttribute("busanjin_pageMaker",pageMaker);
+		model.addAttribute("busanjin_boards",boardService.get5Articles("busanjin"));
+		System.out.println(boardService.get5Articles("busanjin").size());
 	}
 
 	private void makeDongguBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("donggu"));
-		
-		model.addAttribute("donggu_boards",boardService.donggulistCriteria(criteria));
-		model.addAttribute("donggu_pageMaker",pageMaker);
+//	PageMaker pageMaker = new PageMaker();
+//	pageMaker.setCriteria(criteria);
+//	pageMaker.setTotalCount(boardService.countArticles("donggu"));
+//	
+//	model.addAttribute("donggu_pageMaker",pageMaker);
+	model.addAttribute("donggu_boards",boardService.get5Articles("donggu"));
 	}
 
 	private void makeDongnaeBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("dongnae"));
-		
-		model.addAttribute("dongnae_boards",boardService.dongnaelistCriteria(criteria));
-		model.addAttribute("dongnae_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("dongnae"));
+//		
+//		model.addAttribute("dongnae_pageMaker",pageMaker);
+		model.addAttribute("dongnae_boards",boardService.get5Articles("dongnae"));
 	}
 
 	private void makeGangseoBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("gangseo"));
-		
-		model.addAttribute("gangseo_boards",boardService.gangseolistCriteria(criteria));
-		model.addAttribute("gangseo_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("gangseo"));
+//		
+//		model.addAttribute("gangseo_pageMaker",pageMaker);
+		model.addAttribute("gangseo_boards",boardService.get5Articles("gangseo"));
 	}
 
 	private void makeHaeundaeBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("haeundae"));
-		
-		model.addAttribute("haeundae_boards",boardService.haeundaelistCriteria(criteria));
-		model.addAttribute("haeundae_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("haeundae"));
+//		
+//		model.addAttribute("haeundae_pageMaker",pageMaker);
+		model.addAttribute("haeundae_boards",boardService.get5Articles("haeundae"));
 	}
 
 	private void makeJungguBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("junggu"));
-		
-		model.addAttribute("junggu_boards",boardService.junggulistCriteria(criteria));
-		model.addAttribute("junggu_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("junggu"));
+//		
+//		model.addAttribute("junggu_pageMaker",pageMaker);
+		model.addAttribute("junggu_boards",boardService.get5Articles("junggu"));
 	}
 
 	private void makeNamguBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("namgu"));
-		
-		model.addAttribute("namgu_boards",boardService.namgulistCriteria(criteria));
-		model.addAttribute("namgu_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("namgu"));
+//		
+//		model.addAttribute("namgu_pageMaker",pageMaker);
+		model.addAttribute("namgu_boards",boardService.get5Articles("namgu"));
 	}
 
 	private void makeSahaBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("saha"));
-		
-		model.addAttribute("saha_boards",boardService.sahalistCriteria(criteria));
-		model.addAttribute("saha_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("saha"));
+//		
+//		model.addAttribute("saha_pageMaker",pageMaker);
+		model.addAttribute("saha_boards",boardService.get5Articles("saha"));
 	}
 
 	private void makeSasangBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("sasang"));
-		
-		model.addAttribute("sasang_boards",boardService.sasanglistCriteria(criteria));
-		model.addAttribute("sasang_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("sasang"));
+//		
+//		model.addAttribute("sasang_pageMaker",pageMaker);
+		model.addAttribute("sasang_boards",boardService.get5Articles("sasang"));
 	}
 
 	private void makeSeoguBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("seogu"));
-		
-		model.addAttribute("seogu_boards",boardService.seogulistCriteria(criteria));
-		model.addAttribute("seogu_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("seogu"));
+//		
+//		model.addAttribute("seogu_pageMaker",pageMaker);
+		model.addAttribute("seogu_boards",boardService.get5Articles("seogu"));
 	}
 
 	private void makeSuyeongBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("suyeong"));
-		
-		model.addAttribute("suyeong_boards",boardService.suyeonglistCriteria(criteria));
-		model.addAttribute("suyeong_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("suyeong"));
+//		
+//		model.addAttribute("suyeong_pageMaker",pageMaker);
+		model.addAttribute("suyeong_boards",boardService.get5Articles("suyeong"));
 	}
 
 	private void makeYeongdoBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("yeongdo"));
-		
-		model.addAttribute("yeongdo_boards",boardService.yeongdolistCriteria(criteria));
-		model.addAttribute("yeongdo_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("yeongdo"));
+//		
+//		model.addAttribute("yeongdo_pageMaker",pageMaker);
+		model.addAttribute("yeongdo_boards",boardService.get5Articles("yeongdo"));
 	}
 
 	private void makeYeonjeBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("yeonje"));
-		
-		model.addAttribute("yeonje_boards",boardService.yeonjelistCriteria(criteria));
-		model.addAttribute("yeonje_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("yeonje"));
+//		
+//		model.addAttribute("yeonje_pageMaker",pageMaker);
+		model.addAttribute("yeonje_boards",boardService.get5Articles("yeonje"));
 	}
 
 	private void makeGeumjeongBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("geumjeong"));
-		
-		model.addAttribute("geumjeong_boards",boardService.geumjeonglistCriteria(criteria));
-		model.addAttribute("geumheong_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("geumjung"));
+//		
+//		model.addAttribute("geumjung_pageMaker",pageMaker);
+		model.addAttribute("guemjung_boards",boardService.get5Articles("geumjung"));
 	}
 
 	private void makeBukguBoard(Model model, Criteria criteria) throws Exception {
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countArticles("bukgu"));
-		
-		model.addAttribute("bukgu_boards",boardService.bukgulistCriteria(criteria));
-		model.addAttribute("bukgu_pageMaker",pageMaker);
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCriteria(criteria);
+//		pageMaker.setTotalCount(boardService.countArticles("bukgu"));
+//		
+//		model.addAttribute("bukgu_pageMaker",pageMaker);
+		model.addAttribute("bukgu_boards",boardService.get5Articles("bukgu"));
 	}
-	
-	
-	
-	
 	
 }
